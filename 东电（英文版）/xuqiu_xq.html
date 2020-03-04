@@ -1,0 +1,237 @@
+<?php include("config/db.php"); ?>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+<title>客户需求</title>
+
+
+<script src="hua/js/jquery.js"></script>
+<script type="text/javascript" src="js/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/nff.js" charset="utf-8"></script>
+<link rel="stylesheet" href="js/layui/css/layui.css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+body{ background-color: #fff; }
+.nr { width: 1200px; position: relative; }
+
+.x{ height: 1px; background: #dcdcdc; -webkit-transform: scaleY(0.5); -webkit-transform-origin: 0 0; overflow: hidden; clear: both; margin-bottom: 10px; margin-top: 10px; }
+.nr p { font-size: 12px; color: #666; }
+.nr h3 { font-size: 14px; margin-bottom: 5px; }
+.nr h3 a { float: right; display: inline-block; padding-right: 8px; padding-left: 8px; color: #F60; }
+.nr .layui-form { margin-top:10px; }
+.fabu { width: 220px; position: absolute; top: 0px; right: 0px; background-color: #FFF; z-index: 99; padding-top: 11px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px; height: 350px; }
+.txt1,.but1 { border: 1px solid #CCCCCC; margin-bottom: 6px; padding: 8px; width: 96%; font-size: 14px; border-radius: 3px; color: #666; }
+.but1 { font-size: 16px; color: #FFF; background-color: #C00; text-align: center; border-top-color: #C00; border-right-color: #C00; border-bottom-color: #C00; border-left-color: #C00; padding: 6px;  cursor: pointer; }
+.fabu h2 { font-size: 18px; color: #C00; }
+.fabu h4 { font-size: 12px; color: #333; font-weight: normal; margin-bottom: 10px; }
+.nr .gundong-top .fabu h2 .layui-icon { font-size: 22px; margin-left: 4px; }
+#fabu h3{ font-size: 18px; margin-top: 10px; }
+#fabu div{ padding: 15px; border: 1px dashed #CCC; }
+</style>
+
+<style type="text/css">
+.xuqiuxq { border-top-width: 1px; border-right-width: 1px; border-bottom-width: 0px; border-left-width: 1px; border-top-style: solid; border-right-style: solid; border-bottom-style: none; border-left-style: solid; border-top-color: #CCC; border-right-color: #CCC; border-left-color: #CCC; }
+.xuqiuxq dt { line-height: 40px; font-size: 14px; border-bottom-width: 1px; border-bottom-style: solid; border-bottom-color: #CCC; padding-right: 20px; padding-left: 20px; }
+.nr h2 { line-height: 40px; font-size: 16px; }
+#test { font-size: 24px; color: #FFF; background-color: #C00; padding: 20px; margin-bottom: 20px; }
+</style>
+
+
+
+<?php 
+//拿到跨域链接
+$url= $_SERVER['HTTP_REFERER'];
+$id= substr(strrchr($url, "?id="), 4);
+
+date_default_timezone_set('Asia/Shanghai');
+ //获取当前服务器时间
+$time= date('Y,m,d',time());
+
+
+$result = mysqli_query($conn,"SELECT * FROM xuqiu WHERE ID=$id ");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+
+$bt=$row["ubt"];
+$nr=$row["unr"];
+if($nr=""){$nr="无";}
+$sl=$row["uww"];
+$dh=$row["uw1"];
+$xm=$row["uw2"];
+$r1=date('Y-m-d',strtotime($row["r1"]));
+$r2=date('Y-m-d',strtotime($row["r2"]));
+$r3=date('Y,m,d',strtotime($row["r2"]));
+}	
+} 
+
+
+?>
+
+</head>
+
+<body>
+
+<div id="test">截止时间</div>
+
+<script>
+layui.use('util', function(){
+  var util = layui.util;
+  //示例
+  var endTime = new Date(<?php echo $r3; ?>) //假设为结束日期
+  ,serverTime = new Date(<?php echo $time ?>); //假设为当前服务器时间，这里采用的是本地时间，实际使用一般是取服务端的
+   util.countdown(endTime, serverTime, function(date, serverTime, timer){
+    var str = date[0] + '天' + date[1] + '时' +  date[2] + '分' + date[3] + '秒';
+    layui.$('#test').html('距离需求截止时间还有：'+ str);
+  });
+});
+</script>
+
+<br>
+
+<div class="nr">
+  
+	<div class="gundong-top">
+       
+      <div class="fabu" >
+     
+      <h2>发布采购信息</h2>
+      
+       <div id="fabu">
+      <form action="?ok=ok&id=<?php echo $id; ?>" method="post" name="form1" id="form1" class="layui-form" lay-filter="example">
+      <input name="ubt" type="text" class="txt1" placeholder="预购产品名称" autocomplete="off" lay-verify="ubt">
+      <input name="usl" type="text" class="txt1" placeholder="采购数量/单位（如10个）" autocomplete="off" lay-verify="usl">
+         <select name="yxq" class="txt1" lay-ignore>
+        <option value="1" selected="">有效期一个月</option>
+        <option value="3">有效期三个月</option>
+        <option value="6">有效期半年</option>
+        <option value="12">有效期一年</option>
+        <option value="120">长期有效</option>
+      </select>
+      <input name="udh" type="text" class="txt1" placeholder="联系电话" autocomplete="off" lay-verify="udh">
+      <input name="uxm" type="text" class="txt1" placeholder="联系人" autocomplete="off" lay-verify="uxm">
+  
+      <button class="but1" lay-submit="" lay-filter="tijiao" onmouseover="tijiao()">立即发布采购</button>
+      </form>
+     <p>审核通过后，立即更新上线</p> 
+      </div>
+    </div>
+          <div class="bd">
+            <h2>需求详情 <?php echo $r3 ?></h2>
+  <div class="xuqiuxq" id="xq">
+             <dt> <p>产品名称：<?php echo $bt ?>  </p></dt>
+             <dt> <p>欲购数量：<?php echo $sl ?>  </p></dt>
+              <dt><p>发布时间：<?php echo $r1 ?></p></dt>
+             <dt> <p>截止时间：<?php echo $r2 ?></p></dt>
+              <dt><p>联系电话：<?php echo $dh ?> 联系人：<?php echo $xm ?></p></dt>
+            
+              <dt><p>其它说明：<?php echo $nr ?></p></dt>
+              <p></p>
+  </div>  
+  
+       </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+
+        //一般直接写在一个js文件中
+        layui.use(['form', 'laydate', 'layer','element'], function () {
+            var $ = layui.jquery
+		    var layer = layui.layer
+                , form = layui.form
+                , layarea = layui.layarea
+				,element = layui.element;
+
+			
+		$('.w1').on('click', function (event) {
+        event.preventDefault();
+		var tit=$(this).attr('title')		
+		layer.open({
+		type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。
+		title:[tit],
+		area: ['100%', '390px'],
+		//offset: 'b',
+		shift:2,//动画可选 1-5
+		shade:[0.8],//遮罩，shade: [0.8, '#393D49'],如果你不想显示遮罩，可以 false
+		moveOut: true,//是否允许拖拽到窗外
+		maxmin: false,//显示最大化最小化按钮
+		content: [$(this).attr('href')],//自动从href里获取url
+		zIndex: layer.zIndex, success: function(layero){layer.setTop(layero);
+		},//允许点击的窗口置
+		end: function(){location.reload();}//关闭后刷新父窗口
+	});
+	});	
+	
+	//自定义验证规则
+  form.verify({
+    ubt: function(value){
+      if(value.length < 1){
+        return '请输入产品名称！';
+      }
+    }
+	,usl: function(value){
+      if(value.length < 1){
+        return '请输入采购数量！';
+      }
+    }
+	,udh: function(value){
+      if(value.length < 1){
+        return '请输入联系电话！';
+      }
+    }
+	
+    ,uxm: function(value){
+      if(value.length < 1){
+        return '请输入联系人！';
+      }
+    }
+	
+  });
+  
+  //监听提交
+  form.on('submit(tijiao)', function(data){
+    return true;
+  });
+
+});
+		
+    </script>
+    
+    <?php 
+
+$ok=$_GET['ok'];
+
+	$ubt=$_POST['ubt'];
+	$usl=$_POST['usl'];
+	$drq=date("Y-m-d");
+	$yxq=$_POST['yxq'];
+	$jrq=date("Y-m-d", strtotime("+".$yxq." months", strtotime(date("Y-m-d"))));
+	$udh=$_POST['udh'];
+	$uxm=$_POST['uxm'];
+
+if($ok<>""){
+	
+
+
+$sql = "INSERT INTO xuqiu (ubt,uww,uw1,uw2,r1,r2,del) VALUES ('".$ubt."','".$usl."','".$udh."','".$uxm."','".$drq."','".$jrq."','0')";
+
+if ($conn->query($sql) === TRUE){
+	
+			echo '<script>layui.use("layer", function(){ var $ = layui.jquery, layer = layui.layer; layer.alert("发布成功，您的信息将在平台审核后上线！", {icon: 6,offset: "100px"})});$("#xq").html("<dt><p>产品名称：'.$ubt.'</p></dt><dt> <p>欲购数量：'.$usl.'</p></dt><dt><p>发布时间：'.$drq.'</p></dt><dt><p>截止时间：'.$jrq.'</p></dt><dt><p>联系电话：'.$udh.' 联系人2：'.$uxm.'</p></dt><dt><p>其它说明：当期仅供预览，审核后上线...</p></dt><p></p>");</script>';
+
+			} else {
+			echo "<script>layui.use('layer', function(){ var $ = layui.jquery, layer = layui.layer; layer.alert('发布失败，请重试！', {icon: 2})});</script>";
+			}
+}
+?>
+</body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>商品详情页</title>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+		<style type="text/css">
+			.xh input{
+				margin: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 头部区域 -->
+		<div class="head">
+			<!-- 标题开始 -->
+			<div class="title">
+				<ul>
+					<li><a href="#shangpin">商品</a></li>
+					<li><a href="#pingjia">评价</a></li>
+					<li><a href="#dianpu">店铺</a></li>
+					<li><a href="#xiangqing">详情</a></li>
+					<li><a href="#tuijian">推荐</a></li>
+				</ul>
+			</div>
+			<!-- 标题结束 -->
+			<!-- 图片展示 -->
+			<div class="mui-slider">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item"><a href="#"><img src="images/xq1.jpg" /></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="images/xq2.jpg" /></a></div>
+					<div class="mui-slider-item"><a href="#"><img src="images/xq3.jpg" /></a></div>
+					<!-- <div class="mui-slider-item"><a href="#"><img src="images/user-photo.png" /></a></div> -->
+				</div>
+			</div>
+			<!-- 图片展示区域结束 -->
+			<!-- 商品区 -->
+			<div id="shangpin" class="shangpin">
+				<ul>
+					<li>
+						<p class="price">¥580</p>
+					</li>
+					<li>
+						<p class="jianjie"><b>qcy真无线蓝牙耳机 蓝牙5.0</b></p>
+					</li>
+					<li>
+						<span class="yunfei mui-icon mui-icon-paperplane">运费20元</span>
+						<span class="place mui-icon mui-icon-location">深圳</span>
+					</li>
+				</ul>
+			</div>
+			<!-- 商品区结束 -->
+		</div>
+		<!-- 头部区域结束 -->
+		<!-- 促销区域 弹出开始 -->
+		<div class="tc1">
+			<div id="sheet" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<!-- 可选择菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<div class="cx">
+							<div class="cx-title">
+								<p><b>促销(满包邮)</b></p>
+							</div>
+							<div class="cx-bd">
+								<p>北京市，天津市，上海市，重庆市，河北省，山西省，辽宁省，吉林省，黑龙江省，江苏省，浙江省，安徽省，福建省，江西省，
+									山东省，河南省，湖北省，湖南省，广东省，海南省，四川省，贵州省，云南省，陕西省，甘肃省，青海省，台湾省，内蒙古自治区，
+									广西壮族自治区，西藏自治区，宁夏回族自治区，新疆维吾尔自治区</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<!-- 取消菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a href="#sheet1"><b>完成</b></a>
+					</li>
+				</ul>
+			</div>
+			<a href="#sheet" id="openSheet" class="mui-btn mui-btn-primary mui-btn-block">
+				<p style="float: left; margin-left: 20px; line-height: 20px;">促销(包邮)</p>
+				<p style="float: right; margin-right: 20px;"> 北京市，天津市...</p>
+			</a>
+		</div>
+		<!-- 促销区域 弹出结束 -->
+		<!-- 规格选择区域 弹出开始 -->
+		<div class="tc2">
+			<div id="sheet2" class="mui-popover mui-popover-bottom mui-popover-action ">
+				<!-- 可选择菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<div class="cx">
+							<div class="cx-title">
+								<p><b>蓝牙耳机 </b><span> ¥580</span></p>
+							</div>
+							<div class="cx-bd">
+								<div class="xh">
+									<p>颜色</p>
+									<p><input type="button" value="黑色" /><input type="button" value="白色" /><input type="button" value="黑+白" /></p>
+								</div>
+								<div class="sl">
+									<p>数量</p>
+									<div class="mui-numbox" data-numbox-step='1' data-numbox-min='0' data-numbox-max='10'>
+										<button class="mui-btn mui-btn-numbox-minus" type="button">-</button>
+										<input class="mui-input-numbox" type="number" />
+										<button class="mui-btn mui-btn-numbox-plus" type="button">+</button>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</li>
+				</ul>
+				<!-- 取消菜单 -->
+				<ul class="mui-table-view">
+					<li class="mui-table-view-cell">
+						<a class="mui-tab-item" style="float: left;">
+							<span class="mui-tab-label"><input class="jrgwc" type="button" value="加入购物车" /></span>
+						</a>
+						<a class="mui-tab-item" style="float: right;">
+
+							<span class="mui-tab-label"><input class="ljgm" type="button" value="立即购买" /></span>
+					</li>
+				</ul>
+			</div>
+			<a href="#sheet2" id="openSheet" class="mui-btn mui-btn-primary mui-btn-block" style="">
+				<p style="float: left; margin-left: 20px; line-height: 20px;">已选择</p>
+				<p style="float: right; margin-right: 20px;"> 黑色</p>
+			</a>
+		</div>
+		<!-- 促销区域 弹出结束 -->
+		<!-- 评价区域开始 -->
+		<div id="pingjia" class="sppj">
+			<div class="pjh">
+
+				<a id="openSheet" class="mui-btn mui-btn-primary mui-btn-block">
+					<p style="float: left; margin-left: 20px; line-height: 20px;">商品评价（1033）</p>
+					<p style="float: right; margin-right: 20px;">好评97.68%</p>
+				</a>
+
+				<!-- <span style="margin-left: 20px;">商品评价（1033）</span>
+				<a href="#" style="color: black;">
+					<span>好评97.68%</span>
+					<span class="mui-icon mui-icon-arrowright"></span>
+				</a> -->
+			</div>
+			<div class="mui-slider">
+				<div class="mui-slider-group">
+					<div class="mui-slider-item">
+						<img src="images/pj1%20(1).png">
+						<p>佩戴感觉舒适</p>
+					</div>
+					<div class="mui-slider-item">
+						<img src="images/pj1%20(2).png">
+						<p>耳机很漂亮</p>
+					</div>
+					<div class="mui-slider-item">
+						<img src="images/pj1%20(3).png">
+						<p>蓝牙连接稳定</p>
+					</div>
+					<div class="mui-slider-item">
+						<img src="images/pj1%20(4).png">
+						<p>音质很好</p>
+					</div>
+					<div class="mui-slider-item">
+						<img src="images/more.jpg">
+						<p>做工细致</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 评论区域结束 -->
+		<!-- 店铺 开始-->
+		<div id="dianpu" class="dp">
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-media">
+					<a href="javascript:;">
+						<img class="mui-media-object mui-pull-left" src="images/dplogo.jpg">
+						<div class="mui-media-body">
+							QCY旗舰店
+							<p class="mui-ellipsis">店铺的简介</p>
+
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+
+
+
+
+		<!-- 店铺结束 -->
+		<!-- 详情开始 -->
+		<div id="xiangqing" class="spxq">
+			<div class="xq-h">
+				<a class="mui-btn mui-btn-primary mui-btn-block">
+					<p style="">商品详情</p>
+				</a>
+			</div>
+			<div class="xq-bd">
+				<img src="images/spzs1.jpg">
+				<img src="images/spzs2.jpg">
+				<img src="images/spzs3.jpg">
+				<!-- <img src="images/user-photo.png"> -->
+			</div>
+		</div>
+		<!-- 详情结束 -->
+
+		<!-- 推荐开始 -->
+		<div id="tuijian" class="tj">
+			<!-- <div class="tj-h">
+				<a class="mui-btn mui-btn-primary mui-btn-block">
+					<p></p>
+				</a>
+			</div> -->
+			<div class="tj-bd">
+				<img src="images/hot.png" style="width: 100%;">
+			</div>
+			<div class="tj-f">
+				<ul class="mui-table-view mui-grid-view">
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img class="mui-media-object" src="images/tuijian1.jpg">
+							<div class="mui-media-body">女装</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img class="mui-media-object" src="images/tuijian2.jpg">
+							<div class="mui-media-body">女装</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img class="mui-media-object" src="images/tuijian3.jpg">
+							<div class="mui-media-body">女装</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img class="mui-media-object" src="images/tuijian4.jpg">
+							<div class="mui-media-body">女装</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img class="mui-media-object" src="images/tuijian5.jpg">
+							<div class="mui-media-body">女装</div>
+						</a>
+					</li>
+					<li class="mui-table-view-cell mui-media mui-col-xs-6">
+						<a href="#">
+							<img class="mui-media-object" src="images/tuijian6.jpg">
+							<div class="mui-media-body">女装</div>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- 推荐结束 -->
+
+
+		<!-- 底部开始 -->
+		<div class="footer mui-slider">
+			<nav class="mui-bar mui-bar-tab">
+				<a class="mui-tab-item mui-active" style="width: 54px;">
+					<span class="mui-icon mui-icon-contact"></span>
+					<span class="mui-tab-label">联系店家</span>
+				</a>
+
+
+				<a class="mui-tab-item" style="width: 54px;">
+					<span class="mui-icon mui-icon-home"></span>
+					<span class="mui-tab-label ">店铺</span>
+				</a>
+				<a class="mui-tab-item" href="#sheet2" style="width: 134px;">
+
+					<span class="mui-tab-label"><input class="jrgwc" type="button" value="加入购物车" style="height: 100%;" /></span>
+				</a>
+				<a class="mui-tab-item" href="#sheet2" style="width: 134px">
+
+					<span class="mui-tab-label"><input class="ljgm" type="button" value="立即购买" style="height: 100%" /></span>
+				</a>
+			</nav>
+		</div>
+		<!-- 底部结束 -->
+		<script src="js/mui.min.js"></script>
+		<script src="js/app.js"></script>
+		<script src="js/jquery1.42.min.js"></script>
+		<script src="js/index.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

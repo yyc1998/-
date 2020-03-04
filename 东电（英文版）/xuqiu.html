@@ -1,0 +1,191 @@
+<?php include("config/db.php"); ?>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="x5-orientation" content="portrait">
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+<title>客户需求</title>
+
+<script src="js/jquery.js"></script>
+<script type="text/javascript" src="js/layui/layui.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/nff.js" charset="utf-8"></script>
+<link rel="stylesheet" href="js/layui/css/layui.css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+body{ background-color: #f7f7f7; }
+.nr { width: 1200px; position: relative; }
+
+.x{ height: 1px; background: #dcdcdc; -webkit-transform: scaleY(0.5); -webkit-transform-origin: 0 0; overflow: hidden; clear: both; margin-bottom: 10px; margin-top: 10px; }
+.nr p { font-size: 12px; color: #666; }
+.nr h3 { font-size: 14px; margin-bottom: 5px; }
+.nr h3 a { float: right; display: inline-block; padding-right: 8px; padding-left: 8px; color: #F60; }
+.nr .layui-form { margin-top:10px; }
+.fabu { width: 220px; position: absolute; top: 0px; right: 0px; background-color: #FFF; z-index: 99; padding-top: 11px; padding-right: 15px; padding-bottom: 25px; padding-left: 15px; height: 350px; }
+.txt1,.but1 { border: 1px solid #CCCCCC; margin-bottom: 6px; padding: 8px; width: 96%; font-size: 14px; border-radius: 3px; color: #666; }
+.but1 { font-size: 16px; color: #FFF; background-color: #C00; text-align: center; border-top-color: #C00; border-right-color: #C00; border-bottom-color: #C00; border-left-color: #C00; padding: 6px;  cursor: pointer; }
+.fabu h2 { font-size: 18px; color: #C00; }
+.fabu h4 { font-size: 12px; color: #333; font-weight: normal; margin-bottom: 10px; }
+.nr .gundong-top .fabu h2 .layui-icon { font-size: 22px; margin-left: 4px; }
+#fabu h3{ font-size: 18px; margin-top: 10px; }
+#fabu div{ padding: 15px; border: 1px dashed #CCC; }
+</style>
+
+<?php
+
+$result = mysqli_query($conn,"SELECT * FROM xuqiu WHERE us1=1 ORDER BY upx desc ,ID desc limit 0,30");
+
+//如果数据表不是空的 
+if ($result->num_rows > 0) {
+	// 循环输出数据
+    while($row = $result->fetch_assoc()) {
+	$i++;
+		
+	$lb1=$lb1."<a href='http://www.dd1w.com/h-col-105.html?id=".$row["ID"]."' target='_parent'><h3><b>查看详情</b>".mb_substr($row["ubt"],0,13,'UTF-8')."</h3><i>需要".$row["uww"]."</i><s>截止日期：".date('Y-m-d',strtotime($row["r2"]))."</s></a>";
+	
+	if ($i%3 == 0 and $i <31){$lb1=$lb1."</li><li>";}	
+    }
+} 
+?>
+
+</head>
+
+<body>
+
+<div class="nr">
+  
+	<div class="gundong-top">
+       
+      <div class="fabu" >
+     
+      <h2>发布采购信息</h2>
+      <h4>东电协助您找到优质供应商<?php echo $i?></h4>
+       <div id="fabu">
+      <form action="?ok=ok" method="post" name="form1" id="form1" class="layui-form" lay-filter="example">
+      <input name="ubt" type="text" class="txt1" placeholder="预购产品名称" autocomplete="off" lay-verify="ubt">
+      <input name="usl" type="text" class="txt1" placeholder="采购数量/单位（如10个）" autocomplete="off" lay-verify="usl">
+         <select name="yxq" class="txt1" lay-ignore>
+        <option value="1" selected="">有效期一个月</option>
+        <option value="3">有效期三个月</option>
+        <option value="6">有效期半年</option>
+        <option value="12">有效期一年</option>
+        <option value="120">长期有效</option>
+      </select>
+      <input name="udh" type="text" class="txt1" placeholder="联系电话" autocomplete="off" lay-verify="udh">
+      <input name="uxm" type="text" class="txt1" placeholder="联系人" autocomplete="off" lay-verify="uxm">
+  
+      <button class="but1" lay-submit="" lay-filter="tijiao" onmouseover="tijiao()">立即发布采购</button>
+      </form>
+     <p>审核通过后，立即更新上线</p> 
+      </div>
+    </div>
+          <div class="bd">
+                    <ul>
+                        <li><?php echo $lb1; ?></li>
+                   </ul>
+          </div>
+
+  </div>
+</div>
+
+<?php 
+
+$ok=$_GET['ok'];
+
+if($ok<>""){
+	
+	$ubt=$_POST['ubt'];
+	$usl=$_POST['usl'];
+	$drq=date("Y-m-d");
+	$yxq=$_POST['yxq'];
+	$jrq=date("Y-m-d", strtotime("+".$yxq." months", strtotime(date("Y-m-d"))));
+	$udh=$_POST['udh'];
+	$uxm=$_POST['uxm'];
+
+$sql = "INSERT INTO xuqiu (ubt,uww,uw1,uw2,r1,r2,del) VALUES ('".$ubt."','".$usl."','".$udh."','".$uxm."','".$drq."','".$jrq."','0')";
+
+if ($conn->query($sql) === TRUE){
+			echo '<script>layui.use("layer", function(){ var $ = layui.jquery, layer = layui.layer; layer.alert("发布成功，您的信息将在平台审核后上线！", {icon: 6,offset: "100px"})});</script>';
+			} else {
+			echo'添加失败';
+			}
+}
+?>
+
+<script type="text/javascript">
+		jQuery(".gundong-top").slide({mainCell:".bd ul",autoPlay:true,effect:"topMarquee",vis:5,interTime:50,trigger:"click"});
+</script>
+     
+<script type="text/javascript">
+
+
+        //一般直接写在一个js文件中
+        layui.use(['form', 'laydate', 'layer','element'], function () {
+            var $ = layui.jquery
+		    var layer = layui.layer
+                , form = layui.form
+                , layarea = layui.layarea
+				,element = layui.element;
+
+			
+		$('.w1').on('click', function (event) {
+        event.preventDefault();
+		var tit=$(this).attr('title')		
+		layer.open({
+		type: 2,//0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。
+		title:[tit],
+		area: ['100%', '390px'],
+		//offset: 'b',
+		shift:2,//动画可选 1-5
+		shade:[0.8],//遮罩，shade: [0.8, '#393D49'],如果你不想显示遮罩，可以 false
+		moveOut: true,//是否允许拖拽到窗外
+		maxmin: false,//显示最大化最小化按钮
+		content: [$(this).attr('href')],//自动从href里获取url
+		zIndex: layer.zIndex, success: function(layero){layer.setTop(layero);
+		},//允许点击的窗口置
+		end: function(){location.reload();}//关闭后刷新父窗口
+	});
+	});	
+	
+	//自定义验证规则
+  form.verify({
+    ubt: function(value){
+      if(value.length < 1){
+        return '请输入产品名称！';
+      }
+    }
+	,usl: function(value){
+      if(value.length < 1){
+        return '请输入采购数量！';
+      }
+    }
+	,udh: function(value){
+      if(value.length < 1){
+        return '请输入联系电话！';
+      }
+    }
+	
+    ,uxm: function(value){
+      if(value.length < 1){
+        return '请输入联系人！';
+      }
+    }
+	
+  });
+  
+  //监听提交
+  form.on('submit(tijiao)', function(data){
+    return true;
+  });
+
+});
+		
+    </script>
+
+
+
+</body>
+</html>

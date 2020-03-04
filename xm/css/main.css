@@ -1,0 +1,248 @@
+@charset "utf-8";
+/* CSS Document */
+#index_top
+{
+    width: 100%;
+    background-image: url('../img/index_top.png');
+    height: 80px;
+    background-repeat: repeat-x;
+    position: fixed;
+    z-index: 100;
+    top: 0px;
+    left: 0px;
+}
+#index_top #top_div
+{
+    width: 959px;
+    margin-right: auto;
+    margin-left: auto;
+}
+#index_top_logo
+{
+    background-image: url("../img/logo01.png");
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    float: left;
+    height: 36px;
+    width: 120px;
+    margin-top: 22px;
+    margin-bottom: 22px;
+}
+#link_box
+{
+    height: 36px;
+    margin-left: 22px;
+    background-repeat: no-repeat;
+    line-height: 35px;
+    text-align: center;
+    font-size: 14px;
+    float: left;
+    margin-top: 22px;
+    margin-bottom: 22px;
+    border-left-style: solid;
+    border-left-width: 2px;
+    border-left-color: #CCCCCC;
+}
+#link_box ul
+{
+    padding: 0px;
+    margin: 0px;
+}
+#link_box ul li
+{
+    float: left;
+    list-style-type: none;
+    width: 112px;
+    height: 35px;
+    font-family: ��Բ;
+    text-align: center;
+    line-height: 35px;
+}
+#link_box a
+{
+    display: block;
+    font-family: ��Բ;
+    color: #990000;
+}
+#link_box a:visted
+{
+     color: #990000;
+}
+#link_box a:link {
+    text-decoration: none;	
+}
+#link_box a:hover
+{
+    text-decoration: none;
+    background-color: #009933;
+    border: 1px solid #009933;
+    line-height: 35px;
+    border-radius: 3px;
+    color: #FFFFFF;
+}
+.link_act
+{
+    text-decoration: none;
+    background-color: #99EE99;
+    border: 1px solid #99EE99;
+    line-height: 35px;
+    border-radius: 3px;
+    color: #990000;
+}
+.Error{
+	left:175px;
+	top:200px;
+	line-height:16px;
+	font-size:12px;
+	font-weight:normal;
+	color:red;
+	padding:0px;
+	width: 332px;
+	height: 25px;
+	float: left;
+	margin-top: 5px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 20px;
+}
+.IptOnF{background:#FFFFD8;}
+.fmi_bdWp,td,input,select{margin:0px; padding:0px; font-size:12px; font-family:verdana,Arial,Helvetica,sans-serif;}
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, textarea, p, blockquote, th, td
+{
+    margin: 0px;
+    padding: 0;
+}
+#foot {
+	font-size: 12px;
+	height: 60px;
+	width: 959px;
+	margin-right: auto;
+	margin-left: auto;
+	color: #666666;
+	text-align: center;
+	padding-top: 20px;
+	line-height: 25px;
+}
+.foot_box
+{
+    border: 1px solid #F6F6F6;
+    width: 959px;
+    height: 120px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: #F6F6F6;
+    line-height: 30px;
+}
+
+ .SmbBtn
+{
+    margin: 5px;
+    border: 1px solid #FF0066;
+    border-radius: 2px;
+    background: #FF0066;
+    color: white;
+    padding: 5px 15px 5px 15px;
+    display: inline-block;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+ .SmbBtn:hover
+{
+    background: #FF0066;
+    border: 1px solid #FF0066;
+    color: #FFFF66;
+}
+ .SmbBtn:active
+{
+    background: #FF0066;
+    border: 1px solid #CC0066;
+    color: #003300;
+}
+.Btn{cursor:pointer;cursor:hand;}
+.BtnHv{background-position:-128px 0px;}
+
+#loginbox {
+	float: right;
+	height: 329px;
+	width: 360px;
+	margin-right: 85px;
+	margin-top: 57px;
+	margin-left: 35px;
+	font-size: 12px;
+	color: #666666;
+	text-decoration: none;
+}
+
+#top_logo {
+	background-image: url("../img/logo_w.gif");
+	background-repeat: no-repeat;
+	float: left;
+	height: 36px;
+	width: 111px;
+	margin-top: 22px;
+	margin-bottom: 22px;
+}
+#main_bottom
+{
+    height: 80px;
+    width: 100%;
+    margin-top:20px;
+}
+.ad_box{
+	width:225px;
+	float: left;
+	height: 80px;
+	margin-right: 7px;
+	margin-left: 7px;
+}
+.ad_box .img {
+	float: left;
+	height: 60px;
+	width: 60px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.ad_box .txt
+{
+    height: 60px;
+    width: 160px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+    margin-left: 5px;
+    font-size: 12px;
+}
+.ad_box .txt .content
+{
+    font-size: 12px;
+    color: #003300;
+    text-indent: 2em;
+    line-height: 15px;
+    margin-top: 5px;
+}
+.ad_box .txt h3 {
+	font-size: 13px;
+	color: #333333;
+}
+#friendly_link
+{
+    width: 100%;
+    line-height: 25px;
+    font-size: 12px;
+}
+#friendly_link .link_title
+{
+    font-weight: bold;
+    margin-left: 20px;
+    width: 80px;
+    float: left;
+}.foot_box {
+	background-color: #002200;
+}
+.foot_box a {
+	color: #FFFFFF;
+	text-decoration: none;
+}

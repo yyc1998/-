@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			.b01_simple_rollover {
+				color: #26c7fc;
+				border: #26c7fc solid 1px;
+				padding: 10px;
+				background-color: #ffffff;
+			}
+
+			.b01_simple_rollover:hover {
+				color: #ffffff;
+				background-color: #26c7fc;
+			}
+
+			/* ### ### ### 02 */
+			.b02_slide_in {
+				overflow: hidden;
+				border: #26c7fc solid 1px;
+			}
+
+			.b02_slide_in div {
+				position: absolute;
+				text-align: center;
+				width: 100%;
+				height: 50px;
+				box-sizing: border-box;
+				-webkit-box-sizing: border-box;
+				-moz-box-sizing: border-box;
+				padding: 10px;
+			}
+
+			.b02_slide_in div:nth-child(1) {
+				color: #26c7fc;
+				background-color: #ffffff;
+			}
+
+			.b02_slide_in div:nth-child(2) {
+				background-color: #26c7fc;
+				transition: top 0.1s ease;
+				-webkit-transition: top 0.1s ease;
+				-moz-transition: top 0.1s ease;
+				top: -50px;
+			}
+
+			.b02_slide_in div:nth-child(3) {
+				color: #ffffff;
+				transition: opacity 0.1s ease;
+				-webkit-transition: opacity 0.1s ease;
+				-moz-transition: opacity 0.1s ease;
+				opacity: 0;
+			}
+
+			.b02_slide_in:hover div:nth-child(2) {
+				top: 0px;
+				transition: top 0.1s ease;
+				-webkit-transition: top 0.1s ease;
+				-moz-transition: top 0.1s ease;
+			}
+
+			.b02_slide_in:hover div:nth-child(3) {
+				opacity: 1;
+				transition: opacity 0.1s ease;
+				-webkit-transition: opacity 0.1s ease;
+				-moz-transition: opacity 0.1s ease;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="back">
+			<div class="button_base b01_simple_rollover">简单翻转</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b02_slide_in">
+				<div>普通滑入</div>
+				<div></div>
+				<div>普通滑入</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b03_skewed_slide_in">
+				<div>倾斜滑入</div>
+				<div></div>
+				<div>倾斜滑入</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b04_3d_tick">
+				<div>立体标注</div>
+				<div>立体标注</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b05_3d_roll">
+				<div>立体翻滚</div>
+				<div>立体翻滚</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b06_3d_swap">
+				<div>立体替换</div>
+				<div>立体替换</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b07_3d_double_roll">
+				<div>立体双翻滚</div>
+				<div>立体双翻滚</div>
+				<div>立体双翻滚</div>
+				<div>立体双翻滚</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b08_3d_pushback">
+				<div>立体翻牌</div>
+				<div>立体翻牌</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b09_electric">电动效果</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b10_tveffect">
+				<div>电视信号</div>
+				<div>
+					<div>电视信号</div>
+					<div>电视信号</div>
+					<div>电视信号</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b11_3d_jumpback">
+				<div>立体回跳</div>
+			</div>
+		</div>
+
+		<div class="back">
+			<div class="button_base b12_3d_glitch">
+				<div></div>
+				<div>立体差错</div>
+			</div>
+		</div>
+	</body>
+</html>

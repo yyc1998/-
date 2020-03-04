@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>中科农产品质量安全保障管理平台-登录</title>
+		<meta name="author" content="DeathGhost" />
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<link rel="stylesheet" type="text/css" href="css/jq.css" />
+		<style type="text/css">
+			ul {
+				list-style-type: none;
+			}
+
+			li {
+				display: inline-block;
+			}
+
+			li {
+				margin: 10px 0;
+			}
+
+			input.labelauty+label {
+				font: 12px "Microsoft Yahei";
+			}
+
+			body {
+				height: 100%;
+				background: #16a085;
+				overflow: hidden;
+			}
+
+			canvas {
+				z-index: -1;
+				position: absolute;
+			}
+		</style>
+		<script src="js/jquery-1.11.3.min.js"></script>
+		<script src="js/number.js"></script>
+		<script src="js/ground.js"></script>
+		<script>
+			$(document).ready(function(){
+  //粒子背景特效
+  $('body').particleground({
+    dotColor: '#5cbdaa',
+    lineColor: '#5cbdaa'
+  });
+  //验证码
+  createCode();
+  //测试提交，对接程序删除即可
+});
+var browser = {
+    versions: function () {
+        var u = navigator.userAgent, app = navigator.appVersion;
+        return {//移动终端浏览器版本信息
+            trident: u.indexOf('Trident') > -1, //IE内核
+            presto: u.indexOf('Presto') > -1, //opera内核
+            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者QQHD浏览器
+            iPad: u.indexOf('iPad') > -1, //是否iPad
+            webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+        };
+    } (),
+    language: (navigator.browserLanguage || navigator.language).toLowerCase()
+}
+if (browser.versions.mobile == true || browser.versions.ios == true || browser.versions.android == true) {
+    if (confirm("检测到您是移动终端！是否跳转至手机版？")) {
+        window.location.href = 'wap_index.html';
+    }
+}
+
+function fTrim(str) {
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+}
+function fCheck() {
+    $("#username").val(fTrim($("#username").val()));
+    var vals = $('input:radio[name="user_type"]:checked').val();
+    if (vals == "") {
+        $("#divError").html("请选择登陆的类别");
+    }
+    else if ($("#username").val() == "") {
+        $("#divError").html("请输入你的用户名");
+        $("#username").focus();
+        return false;
+    }
+    else if ($("#password").val() == "") {
+        $("#divError").html("请输入你的密码");
+        $("#password").focus();
+        return false;
+    }
+    else if (validate() == false) {
+        $("#divError").html("验证码错误");
+        $("#J_codetext").focus();
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+function set_reg(){
+    var vals = $('input:radio[name="user_type"]:checked').val();
+    if (vals == "com_user") {
+       $("#reg_inf").html("<p>还没有企业管理帐号?<b>&nbsp;&nbsp;<a href='reg.html' target='_self' title='' tabindex='10'>立即注册</a></p>")
+    }
+   else {
+       $("#reg_inf").html("<p>没有政府监管管理帐号?<b>&nbsp;&nbsp;<a href='reg_gov.html' target='_self' title='' tabindex='10'>立即注册</a></p>")
+    }
+}
+</script>
+	</head>
+	<body>
+		<form action="login.aspx" method="post" name="frmLogin" id="frmLogin">
+			<dl class="admin_login">
+
+				<dt>
+					<strong>
+						<img src="img/lo.png" alt="溯源企业后台管理系统" style="width:30px;height:30px;" />
+						农产品质量安全保障管理平台</strong>
+					<em>Management System</em>
+				</dt>
+				<dd class="user_type">
+					<ul class="dowebok">
+						<li><input type="radio" name="user_type" value="com_user" data-labelauty="企业用户登陆" checked="checked" onclick="set_reg();"></li>
+						<li><input type="radio" name="user_type" value="gov_user" data-labelauty="政府监管部门" onclick="set_reg();"></li>
+					</ul>
+				</dd>
+				<dd class="user_icon">
+					<input type="text" placeholder="账号" class="login_txtbx" id="username" name="username" />
+				</dd>
+				<dd class="pwd_icon">
+					<input type="password" placeholder="密码" class="login_txtbx" name="password" id="password" />
+				</dd>
+				<dd class="val_icon">
+					<div class="checkcode">
+						<input type="text" id="J_codetext" placeholder="验证码" maxlength="4" class="login_txtbx">
+						<canvas class="J_codeimg" id="myCanvas" onclick="createCode()">对不起，您的浏览器不支持canvas，请下载最新版浏览器!</canvas>
+					</div>
+
+				</dd>
+				<dd>
+					<input type="submit" value="立即登陆" class="submit_btn" onclick="return fCheck();" />
+				</dd>
+				<dd>
+					<p>
+						<div class="Error" id="divError"></div>
+					</p>
+					<div id="reg_inf">
+						<p>还没有企业管理帐号?<b>&nbsp;&nbsp;<a href="reg.html" target="_self" title="" tabindex="10">立即注册</a>
+						</p>
+					</div>
+				</dd>
+				<dd>
+
+					<p>© 2018 <a href="http://gszkhx.com">gszkhx.com</a> 版权所有</p>
+					<p>陇ICP备18001993号</p>
+				</dd>
+
+			</dl>
+		</form>
+		<script type="text/javascript" src="js/lb.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$(':input').labelauty();
+			});
+		</script>
+	</body>
+</html>

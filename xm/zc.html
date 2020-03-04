@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>注册用户</title>
+		<meta name="keywords" content="农产品溯源,管理系统,免费，溯源服务,农产品溯源管理系统,免费注册" />
+		<link rel="shortcut icon" type="image/x-icon" href="img/lo.png" />
+		<link href="css/main.css" rel="stylesheet" type="text/css" />
+		<link href="css/reg.css" rel="stylesheet" type="text/css" />
+		<script type="text/javascript" src="js/jquery-1.11.3.min.js" charset="utf-8"></script>
+		<script type="text/javascript" src="js/reg.js" charset="utf-8"></script>
+		<script type="text/javascript">
+			function go_step1() {
+				var msg;
+				msg = document.getElementById("company_msg").innerHTML;
+				if (msg.indexOf("可以注册") < 0) {
+
+					var dd = msg.replace(/<\/?.+?>/g, "");
+					var dds = dd.replace(/&nbsp;/g, ""); //
+
+					alert(dds);
+				} else if (document.getElementById("agree").checked == false) {
+					alert("请查看并且同意使用协议！");
+				} else {
+					document.getElementById("step1").className = "step_now_T";
+					document.getElementById("step2").className = "step_now";
+					document.getElementById("step3").className = "step_E";
+					document.getElementById("reg_step1").style.display = "none";
+					document.getElementById("reg_step2").style.display = "";
+					document.getElementById("reg_step3").style.display = "none";
+				}
+			}
+
+			function go_step2() {
+				var msg1;
+				msg = document.getElementById("Umessage").innerHTML;
+				var pass1 = $("#tpassword").val();
+				var pass2 = $("#rpassword").val();
+				if (msg.indexOf("可以注册") < 0) {
+					alert("用户名填写有误！");
+				} else if ((pass1 == null || pass1 == undefined || pass1 == '') && (pass2 == null || pass2 == undefined || pass2 ==
+						'')) {
+					alert("密码不能为空！");
+				} else if (pass1 !== pass2) {
+					alert("密码两次输入不一致！");
+				} else {
+					document.getElementById("step1").className = "step_now_T";
+					document.getElementById("step2").className = "step_now";
+					document.getElementById("step3").className = "step_now_E";
+					document.getElementById("reg_step1").style.display = "none";
+					document.getElementById("reg_step2").style.display = "none";
+					document.getElementById("reg_step3").style.display = "";
+				}
+			}
+
+			function go_step3() {
+				var mailstr = $("#email").val();
+				var pass1 = $("#tel").val();
+				var pass2 = $("#phone").val();
+				if (check_email(mailstr) == false) {
+					alert("邮箱格式有误！");
+				} else if ((pass1 == null || pass1 == undefined || pass1 == '') && (pass2 == null || pass2 == undefined || pass2 ==
+						'')) {
+					alert("电话号码或者手机号码必须填写一个！");
+				} else {
+					document.getElementById("step1").className = "step_now_T";
+					document.getElementById("step2").className = "step_now";
+					document.getElementById("step3").className = "step_now_E";;
+					document.getElementById("reg_step1").style.display = "none";
+					document.getElementById("reg_step2").style.display = "none";
+					document.getElementById("reg_step3").style.display = "";
+
+				}
+			}
+
+			function go_step0() {
+				document.getElementById("step1").className = "step_now_T";
+				document.getElementById("step2").className = "step";
+				document.getElementById("step3").className = "step_E";
+				document.getElementById("reg_step1").style.display = "";
+				document.getElementById("reg_step2").style.display = "none";
+				document.getElementById("reg_step3").style.display = "none";
+
+			}
+		</script>
+
+
+	</head>
+
+	<body>
+		<div id="index_top">
+			<div id="top_div">
+				<div id="index_top_logo"></div>
+				<div id="link_box">
+					<ul>
+						<li><a href="index.html">首页</a></li>
+						<li><a href="index.html#chaxun">溯源查询</a></li>
+						<li><a href="index.html#gongneng">功能介绍</a></li>
+						<li><a href="index.html#">技术支持</a></li>
+						<li><a href="index.html#">获取服务</a></li>
+						<li><a href="reg.html">企业注册</a></li>
+						<li><a href="login.html" class="link_act">企业登陆</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="main">
+			<div class="main_top">
+				<div class="reg_tit"></div>
+				<div class="reg_box">
+					<div class="reg_left">
+						<div id="step1" class="step_now_T">1</div>
+						<div id="step2" class="step">2</div>
+						<div id="step3" class="step_E">3</div>
+					</div>
+					<div class="reg_right">
+						<form action="com_admin/include/reg_user.aspx" method="post" onsubmit="return check_form();">
+							<div id="reg_step1" class="form_box">
+								<h4>请填写企业名称：</h4>
+								<p style=" padding-top:5px; height:35px;">
+									<input name="company_name" type="text" class="main_ipt" id="company_name" onfocus="this.className='main_ipt IptOnF'"
+									 onblur="this.className='main_ipt';checkcompany();" maxlength="50" tabindex="1" style="width:260px;" />
+									<a href="javascript:void(0)" onclick="checkcompany()">单击验证</a></p>
+								<div style="padding-left:80px;padding-top:5px; height:35px;color: #898989;" id="company_msg">*企业名称需和组织机构代码证（或营业执照）一致</div>
+								<div class="inline">
+									<div class="L1">企业类别：</div>
+									<div class="L2">
+										<input id="c_type1" type="radio" name="c_type" value="0" checked=checked />种植业&nbsp;&nbsp;&nbsp;&nbsp; <input
+										 id="c_type2" type="radio" name="c_type" value="1" />养殖业
+									</div>
+								</div>
+								<p style="padding-left:100px;margin-top:50px;"><input id="agree" type="checkbox" />同意用户使用协议</p>
+								<p style="padding-left:100px;">
+									<input name="tbok" type="button" class="Btn Reg_Btn" id="Submit1" tabindex="9" onmousedown="this.className='Btn Reg_Btn BtnDw'"
+									 onmouseover="this.className='Btn Reg_Btn BtnHv'" onmouseout="this.className='Btn Reg_Btn'" onclick="go_step1()"
+									 value="下一步" />
+								</p>
+							</div>
+							<div id="reg_step2" style="display:none" class="form_box">
+								<div class="inline" style=" padding-top:35px; height:35px;">
+									<div class="L1">用户名：</div>
+									<div class="L2">
+										<input name="username" type="text" class="main_ipt" id="username" onfocus="this.className='main_ipt IptOnF'"
+										 onblur="checkusername(this.value);this.className='main_ipt';" maxlength="20" tabindex="1" />
+									</div>
+									<div class="L3" id="Umessage"></div>
+								</div>
+								<div class="inline" style="height:70px">
+									<div class="L1" style="height:70px">密　码：</div>
+									<div class="L2" style="height:70px">
+										<div><input name="tpassword" class="main_pass" id="tpassword" type="password" onkeyup="check_pass();" onfocus="this.className='main_pass pass_ipt';"
+											 onblur="this.className='main_pass';" maxlength="20" tabindex="1" /></div>
+										<div style="margin-left: auto; margin-right: auto;width:200px; height:10px;line-height:10px;">
+											<div class="ywz_zhuce_huixian" id='pwdLevel_1'> </div>
+											<div class="ywz_zhuce_huixian" id='pwdLevel_2'> </div>
+											<div class="ywz_zhuce_huixian" id='pwdLevel_3'> </div>
+										</div>
+										<div style="margin-left: auto; margin-right: auto;width:200px; line-height:20px"">
+                <div class="
+										 ywz_zhuce_hongxianwenzi"> 弱</div>
+										<div class="ywz_zhuce_hongxianwenzi"> 中</div>
+										<div class="ywz_zhuce_hongxianwenzi"> 强</div>
+									</div>
+								</div>
+								<div class="L3" style="height:70px">
+									<div id="pwd_tip" style="color: #898989">
+										<font style="color: #F00">*</font> 6-16位，由字母（区分大小写）、数字、符号组成
+									</div>
+									<div id="pwd_err" style="color: #f00; display:none;">6-16位，由字母（区分大小写）、数字、符号组成</div>
+								</div>
+							</div>
+							<div class="inline">
+								<div class="L1">确认密码：</div>
+								<div class="L2">
+									<input name="rpassword" type="password" id="rpassword" class="main_pass" onfocus="this.className='main_pass pass_ipt';"
+									 onblur="this.className='main_pass';checkrpass();" maxlength="20" tabindex="1" />
+								</div>
+								<div class="L3" id="rpass_msg"></div>
+							</div>
+
+							<p style="padding-left:100px;margin-top:60px;"><input id="Button6" type="button" value="上一步" onclick="go_step0()"
+								 class="Btn Reg_Btn" onmousedown="this.className='Btn Reg_Btn BtnDw'" onmouseover="this.className='Btn Reg_Btn BtnHv'"
+								 onmouseout="this.className='Btn Reg_Btn'" />&nbsp;&nbsp;
+								<input id="Button2" type="button" value="下一步" onclick="go_step2()" class="Btn Reg_Btn" onmousedown="this.className='Btn Reg_Btn BtnDw'"
+								 onmouseover="this.className='Btn Reg_Btn BtnHv'" onmouseout="this.className='Btn Reg_Btn'" /></p>
+
+					</div>
+					<div id="reg_step3" style="display:none" class="form_box">
+						<div class="inline" style=" padding-top:70px; height:35px;">
+							<div class="L1">电子邮箱：</div>
+							<div class="L2"><input name="email" type="text" class="main_ipt" id="email" onfocus="this.className='main_ipt IptOnF'"
+								 onblur="this.className='main_ipt';checkmail(this.value);" maxlength="50" tabindex="1" /></div>
+							<div class="L3" id="email_msg"></div>
+						</div>
+						<div class="inline">
+							<div class="L1">联系电话：</div>
+							<div class="L2"><input name="tel" type="text" class="main_ipt" id="tel" onfocus="this.className='main_ipt IptOnF'"
+								 onblur="this.className='main_ipt'" maxlength="50" tabindex="1" /></div>
+							<div class="L3"></div>
+						</div>
+						<div class="inline">
+							<div class="L1">手机号码：</div>
+							<div class="L2"><input name="phone" type="text" class="main_ipt" id="phone" onfocus="this.className='main_ipt IptOnF'"
+								 onblur="this.className='main_ipt'" maxlength="50" tabindex="1" /></div>
+							<div class="L3"></div>
+						</div>
+						<div class="inline">
+							<div class="L1">验证码：</div>
+							<div class="L2">
+								<div style="float: left; margin-top: 5px; margin-bottom: 5px;">
+									<input id="code" name="code" class="code_ipt" id="code" onfocus="this.className='code_ipt IptOnF'" onblur="this.className='code_ipt'"
+									 tabindex="2" type="text" /></div>
+								<div style="float: left; margin-top: 5px; margin-bottom: 5px;">
+									<img alt="验证码,看不清楚?请点击刷新验证码" onclick="this.src='include/CodeChar.aspx?t='+(new Date().getTime());" src="include/CodeChar.aspx" /></div>
+							</div>
+							<div class="L3"></div>
+						</div>
+						<p style="padding-left:100px;margin-top:25px;">
+							<input id="Button1" type="button" value="上一步" onclick="go_step1()" class="Btn Reg_Btn" onmousedown="this.className='Btn Reg_Btn BtnDw'"
+							 onmouseover="this.className='Btn Reg_Btn BtnHv'" onmouseout="this.className='Btn Reg_Btn'" />&nbsp;&nbsp;
+							<input id="Button3" type="Submit" value="注  册" class="Btn Reg_Btn" onmousedown="this.className='Btn Reg_Btn BtnDw'"
+							 onmouseover="this.className='Btn Reg_Btn BtnHv'" onmouseout="this.className='Btn Reg_Btn'" />
+						</p>
+					</div>
+
+
+					<div class="regbottom">
+						<div class="Error" id="divError"><span>已经有企业管理帐号<b>&nbsp;&nbsp;<a href="login.html" target="_self" title=""
+									 tabindex="10">立即登录</a></b></span></div>
+					</div>
+
+
+					</form>
+				</div>
+			</div>
+		</div>
+		<div ID="main_bottom">
+			<div class="ad_box">
+				<!-- <div class="img"><img src="img/food.png" width="60" height="60" /></div> -->
+				<div class="txt">
+					<h3>农产品溯源查询</h3>
+					<div class="content">
+						农产品品种、种植、施肥、管理、生产加工信息二维码查询。</div>
+				</div>
+			</div>
+			<div class="ad_box">
+				<div class="img"><img src="img/yao.png" width="60" height="60" /></div>
+				<div class="txt">
+					<h3>中药材溯源查询</h3>
+					<div class="content">
+						中药材品种、种植、施肥、管理、生产加工信息二维码查询。</div>
+				</div>
+			</div>
+			<div class="ad_box">
+				<div class="img"><img src="img/liucheng.png" width="60" height="60" /></div>
+				<div class="txt">
+					<h3>自定义溯源流程</h3>
+					<div class="content">
+						支持自定义产品的溯源管理流程。</div>
+				</div>
+			</div>
+			<div class="ad_box">
+				<div class="img"><img src="img/phone.png" width="60" height="60" /></div>
+				<div class="txt">
+					<h3>二维码扫描溯源</h3>
+					<div class="content">
+						支持手机发布溯源信息、产品信息、扫描二维码查询溯源内容。</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="foot_box">
+			<SCRIPT language="javascript" src="js/foot.js"></SCRIPT>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<title></title>
+		<style type="text/css">
+			.us {
+				padding-top: 50px;
+			}
+
+			.us-head {
+				text-align: center;
+				color: black;
+				width: 100%;
+				border-bottom: 2px solid #DFDFDF;
+				padding-bottom: 20px;
+			}
+
+			.us .us-head span {
+				cursor: hand;
+				display: inline-block;
+				font-size: 16px;
+				color: #000000;
+				line-height: 38px;
+				margin-left: 5px;
+				margin-right: 5px;
+				width: 140px;
+				border-radius: 20px;
+			}
+
+			.us .us-head span:hover {
+				background-color: #F67524;
+				color: #FFFFFF;
+			}
+
+			.us .us-bd {
+				width: 80%;
+				margin-left: 10%;
+				padding-top: 20px;
+				padding-bottom: 50px;
+			}
+
+			.us .us-bd img {
+				margin-left: 150px;
+			}
+
+			.us-bd .yyc span {
+				width: 600px;
+				float: right;
+				margin-right: 150px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="us">
+			<div class="us-head">
+				<span onMouseMove="JavaScript:Change('0','JDiv_',2)">网站开发</span>
+				<span onMouseMove="JavaScript:Change('1','JDiv_',2)">APP开发</span>
+				<span onMouseMove="JavaScript:Change('2','JDiv_',2)">小程序开发</span>
+
+
+			</div>
+			<div class="us-bd">
+				<div class="biv" id="BigDIV">
+					<div class="yyc" id="JDiv_0">
+						<img src="img/222.png">
+						
+
+					</div>
+					<div class="yyc" id="JDiv_1">
+						<img src="img/333.png">
+						
+					</div>
+					<div class="yyc" id="JDiv_2">
+						<img src="img/222.png">
+						 　
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+
+	</body>
+	<script language="JavaScript" type="text/javascript">
+		function Change(divId, divName, xDivCount) {
+			for (i = 0; i <= xDivCount; i++) {
+				document.getElementById(divName + i).style.display = "none";
+			}
+			document.getElementById(divName + divId).style.display = "block";
+		}
+	</script>
+</html>

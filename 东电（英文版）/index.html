@@ -1,0 +1,367 @@
+<?php include("config/db.php"); ?>
+<?php include("config/mk.php"); ?>
+
+<?php 
+
+$fid=133;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 8");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+
+$wid=$row["ID"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$zbgg=$zbgg.'<li><a href="zbxq.php?id='.$wid.'">'.$bt.'<s>'.$r1.'</s></a></li>';
+}	
+} 
+
+$fid=135;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 8");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$wid=$row["ID"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$zbbg=$zbbg.'<li><a href="zbxq.php?id='.$wid.'">'.$bt.'<s>'.$r1.'</s></a></li>';
+}	
+} 
+
+$fid=134;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 8");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$wid=$row["ID"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$zbxx=$zbxx.'<li><a href="zbxq.php?id='.$wid.'">'.$bt.'<s>'.$r1.'</s></a></li>';
+}	
+}
+
+$fid=140;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 8");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$wid=$row["ID"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$hyxw=$hyxw.'<li><a href="xq.php?id='.$wid.'">'.$bt.'<s>'.$r1.'</s></a></li>';
+}	
+} 
+
+$fid=139;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 8");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$wid=$row["ID"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$hyzs=$hyzs.'<li><a href="xq.php?id='.$wid.'">'.$bt.'<s>'.$r1.'</s></a></li>';
+}	
+} 
+
+$fid=149;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 8");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$wid=$row["ID"];
+$bt=$row["bt"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$cgbz=$cgbz.'<li><a href="xq.php?id='.$wid.'">'.$bt.'<s>'.$r1.'</s></a></li>';
+}	
+}
+
+$fid=142;
+$result = mysqli_query($conn,"SELECT ID,fid,bt,t1,px FROM wy WHERE fid=$fid ORDER BY px asc limit 4");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$wid=$row["ID"];
+$bt=$row["bt"];
+$t1=$row["t1"];
+$r1=date("m-d",strtotime($row["r1"]));
+$r2=$row["r2"];
+
+$dkt=$dkt.'<li><a href="xq.php?id='.$wid.'"><img src="'.$t1.'"><b>'.$bt.'</b></a></li>';
+}	
+} 
+  
+mysqli_close($conn);
+?>
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" Content="text/html; Charset=UTF-8"/>
+<title><?php echo $wzbt ?></title>
+<meta name="keywords" content="<?php echo $wzgjz ?>">
+<meta name="description" content="<?php echo $wzms ?>">
+<meta name="viewport" content="width=device-width, initial-scale=0.36">
+
+<script src="js/jquery.js"></script>
+<script src="js/nff.js"></script>
+
+<script src="js/jquery.flipster.js"></script>
+<script>$(function(){ $(".flipster").flipster({ style: 'carousel', start: 0 }); 
+/////自动播放
+t = setInterval(e, 3000)
+	function e(){
+	$('.flipto-next').click();
+	};
+});
+
+</script>
+
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="css/jquery.flipster.css">
+<style type="text/css">
+.pf1,.pf2 { position: fixed; z-index: 9999; bottom:200px;  }
+.pf1 img,.pf2 img{ height: 308px; width: 100px; border: 1px solid #ccc; }
+.pf1{left: 0px; }
+.pf2{right: 0px;}
+
+.gg5 { margin-bottom: 20px; }
+.gg5 img{ width: 100%; height: 100px; }
+</style>
+
+<?php 
+//判断是否移动端
+$agent = check_wap();
+    if( $agent )
+{
+   echo('<style type="text/css">.flip-next,.flip-future,.pf1,.pf2{ display: none; }</style>');
+}
+// check if wap
+function check_wap(){
+    // 先检查是否为wap代理，准确度高
+    if(stristr($_SERVER['HTTP_VIA'],"wap")){
+            return true;
+        }
+        // 检查浏览器是否接受 WML.
+        elseif(strpos(strtoupper($_SERVER['HTTP_ACCEPT']),"VND.WAP.WML") > 0){
+        return true;
+   }
+   //检查USER_AGENT
+   elseif(preg_match('/(blackberry|configuration\/cldc|hp |hp-|htc |htc_|htc-|iemobile|kindle|midp|mmp|motorola|mobile|nokia|opera mini|opera |Googlebot-Mobile|YahooSeeker\/M1A1-R2D2|android|iphone|ipod|mobi|palm|palmos|pocket|portalmmm|ppc;|smartphone|sonyericsson|sqh|spv|symbian|treo|up.browser|up.link|vodafone|windows ce|xda |xda_)/i', $_SERVER['HTTP_USER_AGENT'])){
+        return true;           
+    }
+    else{
+        return false;  
+   }
+}
+?>
+
+</head>
+
+<body>
+<?php echo  $ym ;?>
+
+
+<div class="dhk"><div class="dh_z"><?php echo $fwxm ;?></div></div>
+
+    <div class="jdt">
+          <div class="flipster">
+            <ul><?php echo $jdt; ?></ul>
+          </div>
+    </div>
+
+    <div class="caidan">
+        <div class="nr"><ul><?php echo $spdh ;?></ul></div>
+    </div>
+
+<div class="gg5 nr">
+  <div class="bd">
+  <ul>
+   <?php echo $gg5; ?>
+
+  </ul>
+  </div>
+</div> 
+<script>   
+jQuery(".gg5").slide({mainCell:".bd ul",effect:"topLoop",autoPlay:true,delayTime:1000});
+</script>
+
+    <div class="lb1">
+    <div class="nr">
+        
+      <div class="b60">
+      
+        <div class="b50">
+        <ul>
+        <h2 class="bt1"><a href="/lb.php?fid=140" title="查看更多">+</a>电力要闻
+        <p></p></h2>
+        <?php echo $hyxw; ?>
+        </ul>
+        </div>
+        <div class="b50">
+        <ul>
+        <h2 class="bt1"><a href="/lb.php?fid=139" title="查看更多">+</a>行业资讯<p></p></h2>
+        <?php echo $hyzs; ?>
+        </ul>
+        </div>
+    
+        <div class="gg">
+        <ul>
+        <?php echo $gg1; ?>
+        </ul>
+        </div>
+      </div>
+        
+        <div class="b34">
+        <ul>
+            <h2 class="bt1"><a href="/lb.php?fid=149" title="查看更多">+</a>会议及展览<p></p></h2>
+            <div class="gg2"><?php echo $gg3; ?></div>
+           <?php echo $cgbz; ?>
+        </ul>
+        </div>
+    </div>
+    </div>
+
+<div class="nr gg4">
+<?php echo $gg_a1; ?>
+</div>
+<div class="nr">
+    <div class="dkt">
+    <h2 class="bt1"><a href="/lbt.php?fid=142" title="查看更多">+</a>电课堂<p></p></h2>
+    <ul id="lie" class="lietu"><?php echo $dkt; ?></ul>
+    </div>
+</div>
+
+<!--
+<div class="cp">
+<div class="nr">
+<h2>东电商城产品推荐</h2>
+<ul>
+<li><a href="#" class="cpbt"><img src="/up/images/ico/cpbt.jpg"></a></li>
+<li><a href="#"><span>新品</span><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+<li><a href="#"><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+<li><a href="#"><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+<li><a href="#"><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+
+<li><a href="#" class="cpbt"><img src="/up/images/ico/cpbt.jpg"></a></li>
+<li><a href="#"><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+<li><a href="#"><span>促销</span><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+<li><a href="#"><img src="/up/images/ico/cp1.jpg"><b>电气材料</b><u>这个是电气材料</u><s>2199.00元</s></a></li>
+<li><a href="#" class="cpdi"><img src="up/images/ico/gengduo.png" ></a></li>
+<li><a href="#" class="cpdi"><img src="up/images/ico/gengduo.png" ></a></li>
+</ul>
+</div>
+</div>
+-->
+<br>
+
+<div class="lb1 nr">
+    
+  <div class="b60">
+  
+    <div class="b50">
+    <ul>
+    <h2 class="bt1"><a href="/zbgg.php" title="查看更多">+</a>招标公告<p></p></h2>
+    <?php echo $zbgg ;?>
+    </ul>
+    </div>
+    <div class="b50">
+    <ul>
+    <h2 class="bt1"><a href="/zbgg.php?lx=2" title="查看更多">+</a>中标公告<p></p></h2>
+      <?php echo $zbxx ;?>
+    </ul>
+    </div>
+ 
+  </div>
+    
+    <div class="b34">
+    <ul>
+    <h2 class="bt1"><a href="/zbgg.php?lx=3" title="查看更多">+</a>招标变更<p></p></h2>
+     <?php echo $zbbg; ?>
+    </ul>
+    </div>
+
+</div>
+
+<!--<div class="nr">
+
+<div class="dkt">
+<h2 class="bt1"><a href="/lbt.php?fid=142" title="查看更多">+</a>东电峰会<p></p></h2>
+
+<ul id="lie" class="lietu"><?php // echo $fenghui; ?></ul>
+</div>
+
+<div class="tongji">
+平台热线：400-6666-819 / 周一至日 9:00-16:00
+</div>
+</div>-->
+
+<div class="hzhb">
+          <div class="nr">
+            <div class="gundong-left">
+                      <div class="bd">
+                        <h2><a class="prev" title="向右翻页">&gt;</a><a class="next" title="向左翻页">&lt;</a>
+                        合作伙伴</h2>
+                      </div>
+                       <div class="bd">
+                         <ul> <?php echo $hzhb; ?></ul>
+                      </div>
+            </div>
+    </div>
+</div>    
+  <script>
+    jQuery(".gundong-left").slide({mainCell:".bd ul",autoPage:true,effect:"leftLoop",autoPlay:true,vis:5});
+    </script> 
+
+
+<div class="yqlj">
+    <div class="nr">
+        <ul>
+            <a href="#">友情链接:</a>
+            <?php echo $yqlj ?>
+        </ul>
+    </div>
+</div>
+
+<?php echo  $yj ?>
+  
+<?php echo  $pfgg ?>
+
+
+ 
+<style type="text/css">
+#cnzz_stat_icon_1278123447 {background-color: #e8e8e8;text-align: center;display: block;margin-top: -30px;}
+</style>
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1278123447'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s9.cnzz.com/z_stat.php%3Fid%3D1278123447%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script> 
+<script>
+//判定登录
+  var zh= '<?php echo $_SESSION['uzh']; ?>'
+  var oid='<?php echo $_SESSION['oid']; ?>'
+  if(zh.length > 1 || oid.length >1){
+  $("#vip").html("<a href='/user/'>会员中心</a><a href='/user/dl.php?t=1'>退出登录</a>");
+  }
+</script> 
+
+  </body>
+</html>

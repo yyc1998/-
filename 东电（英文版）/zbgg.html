@@ -1,0 +1,369 @@
+<?php include("config/db.php"); ?>
+<?php include("config/mk.php"); ?>
+<!doctype html>
+<html>
+<head>
+
+<title>招标中标信息</title>
+<meta name="keywords" content="电力招标公告">
+<meta name="description" content="东电平台汇聚全国电网招标中标公告通知">
+<meta name="viewport" content="width=device-width, initial-scale=0.36">
+
+<script src="a/js/jquery.js" charset="utf-8"></script>
+<script src="a/js/layui/layui.js" charset="utf-8"></script>
+<link href="a/js/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.tab .nr .but1 { margin-right: 7px; padding-right: 7px; padding-left: 7px; }
+.ssb { position: relative; clear: both; width: 400px; border: 1px solid #276ade; border-radius: 3px; float: right; overflow: hidden; }
+.ssb i { position: absolute; top: 0px; right: 0px; font-size: 14px; color: #FFFFFF; z-index: 9; line-height: 36px; height: 42px; width: 60px; text-align: center; cursor: pointer; font-style: normal; background-color: #276ade; }
+.ssk { width: 240px; background-color: #FFF; padding: 10px; color: #333; }
+.ssb #sslx { display: block; float: left; border-top-style: none; border-right-style: none; border-bottom-style: none; border-left-style: none; line-height: 36px; height: 36px; padding-right: 10px; padding-left: 10px; color: #276ade; }
+</style>
+<meta charset="utf-8">
+
+</head>
+
+<body>
+<?php echo $ym; ?>
+<?php $tss=$_GET['ss'];
+//利用 explode 函数分割字符串到数组 
+		$jq = explode(',',$tss); 
+		for($j=0;$j<count($jq);$j++){ 
+		  ${'c'.$j} = $jq[$j]; 
+		} 
+?>
+<br>
+  <div class="tab">
+  <div class="nr">
+   
+      <input name="fid" type="hidden" id="fid" value="133,134,135">
+      <input name="dq" type="hidden" id="dq" value="全国">
+      <input name="rq" type="hidden" id="rq" value="不限">
+      <input name="ly" type="hidden" id="ly" value="全部">
+    <div class="fl">
+             <a href="javascript:;" title="133,134,135" class="on">全部</a>
+             <a href="javascript:;" title="133">招标公告</a>
+             <a href="javascript:;" title="134">中标公告</a>
+             <a href="javascript:;" title="135">招标变更</a>
+          </div>
+  
+    </div>
+    </div>
+     
+<div class="nr">
+ <div id="shai">
+  <div class="diqu">
+      <ul>
+      
+        <li><a href="javascript:;" class="on">全国</a></li>
+        <li><a href="javascript:;">安徽</a></li>
+        <li><a href="javascript:;">北京</a></li>
+        <li><a href="javascript:;">福建</a></li>
+        <li><a href="javascript:;">甘肃</a></li>
+        <li><a href="javascript:;">广东</a></li>
+        <li><a href="javascript:;">广西</a></li>
+        <li><a href="javascript:;">贵州</a></li>
+        <li><a href="javascript:;">海南</a></li>
+        <li><a href="javascript:;">河北</a></li>
+        <li><a href="javascript:;">河南</a></li>
+        <li><a href="javascript:;">黑龙江</a></li>
+        <li><a href="javascript:;">湖北</a></li>
+        <li><a href="javascript:;">湖南</a></li>
+        <li><a href="javascript:;">吉林</a></li>
+        <li><a href="javascript:;">江苏</a></li>
+        <li><a href="javascript:;">江西</a></li>
+        <li><a href="javascript:;">辽宁</a></li>
+        <li><a href="javascript:;">内蒙古</a></li>
+        <li><a href="javascript:;">宁夏</a></li>
+        <li><a href="javascript:;">青海</a></li>
+        <li><a href="javascript:;">山东</a></li>
+        <li><a href="javascript:;">山西</a></li>
+        <li><a href="javascript:;">陕西</a></li>
+        <li><a href="javascript:;">上海</a></li>
+        <li><a href="javascript:;">四川</a></li>
+        <li><a href="javascript:;">天津</a></li>
+        <li><a href="javascript:;">西藏</a></li>
+        <li><a href="javascript:;">新疆</a></li>
+        <li><a href="javascript:;">云南</a></li>
+        <li><a href="javascript:;">浙江</a></li>
+        <li><a href="javascript:;">重庆</a></li>
+      </ul>
+    </div>
+               
+  <div class="rq">
+       
+        <ul>
+          <li><a href="javascript:;" class="on">不限</a></li>
+          <li><a href="javascript:;">今天</a></li>
+          <li><a href="javascript:;">近一周</a></li>
+          <li><a href="javascript:;">近一个月</a></li>
+          <li><a href="javascript:;">近三个月</a></li>
+          <li><a href="javascript:;">近半年</a></li>
+          <li><a href="javascript:;">近一年</a></li>
+        </ul>
+    </div>
+<div class="ssb">
+          <i id="s1">搜索</i> 
+           <select name="sslx" id="sslx">
+             <option value="bt" selected="selected">搜标题</option>
+             <option value="w5">搜全文</option>
+           </select>
+          <input name="ss" type="text" class="ssk" id="ss" placeholder="请输入行业关键词，例如（电缆）" value="<?php echo $tss ?>">
+    </div>
+    <div class="ly">
+        <ul>
+          <li><a href="javascript:;" class="on">全部</a></li>
+          <li><a href="javascript:;">国网</a></li>
+          <li><a href="javascript:;">南网</a></li>
+          <li><a href="javascript:;">华能</a></li>
+          <li><a href="javascript:;">中广核</a></li>
+          <li><a href="javascript:;">蒙电</a></li>
+          <li><a href="javascript:;">大唐</a></li>
+          <li><a href="javascript:;">中核</a></li>
+        </ul>
+    </div>
+    
+   
+   <a href="javascript:;" id="gb">确定</a>
+   
+ </div> 
+
+    
+  <div class="bk">
+    <ul id="lie" class="lie"></ul>
+    <div id="fenye"></div>
+  </div>
+  
+</div>
+
+<div class="yqlj"><div class="nr">
+    <ul><a href="#">友情链接:</a><?php echo $yqlj ?></ul>
+</div></div>
+<script charset="utf-8">
+		 		 
+ //初始化ajax信息
+ var fid = encodeURI($("#fid").val());
+ var dq = encodeURI($("#dq").val());
+ var rq = encodeURI($("#rq").val());
+ var ss = encodeURI($("#ss").val());
+ var sslx = encodeURI($("#sslx").val());
+ var ly = encodeURI($("#ly").val());
+
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+ 
+ $("#lie").html(htmlobj.responseText);
+
+		
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  //自定义排版
+  laypage.render({
+    elem: 'fenye'
+    
+    ,layout: ['prev', 'page', 'next']
+	//,curr: location.hash.replace('#!fenye=', '') //获取起始页
+	//,groups:3//同时显示页数
+	,theme: '#39F'
+	,limit:15
+	//,limits:[15, 20, 25, 50]
+	,jump: function(obj, first) {
+    //得到了当前页，用于向服务端请求对应数据
+		var curr = obj.curr;
+		var limit = obj.limit;
+       // window.location.href='json/zbgg.php?id=87&page='+curr; //物理跳转
+	if(!first){
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+curr+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+    }
+	,count: $(" #zs ").val()//总页数
+	,first: false//屏蔽首页尾页
+    ,last: false
+  });
+  
+  
+ /////选择类型//////////////////////////////////////////////////////////////////////
+$('.fl a').on('click', function (event) {$('#fid').val($(this).attr('title'));
+			 
+			 var fid =$("#fid").val();
+			 var dq = encodeURI($("#dq").val());
+			 var rq = encodeURI($("#rq").val());
+			 var ss = encodeURI($("#ss").val());
+			 var sslx = encodeURI($("#sslx").val());
+		     var ly = encodeURI($("#ly").val());
+			 $('.fl a').removeClass('on')
+			 $(this).addClass('on')
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+ 			$("#lie").html(htmlobj.responseText); 
+	
+ laypage.render({
+     elem: 'fenye'
+	 ,limit:15
+	// ,limits:[15, 20, 25, 50]
+	 ,layout: ['prev', 'page', 'next']
+	 ,jump: function(obj, first) {
+		var curr = obj.curr;
+		var limit = obj.limit;
+	 if(!first){
+		 
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+curr+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+    }
+	,count: $(" #zs ").val()//总页数
+	,first: false//屏蔽首页尾页
+    ,last: false
+  });	
+  });	
+ ////////////////////////////////////////////////////////////////////////// 	
+    $('.diqu a').on('click', function (event) {$('#dq').val($(this).text());
+			 var fid = encodeURI($("#fid").val());
+			 var dq = encodeURI($("#dq").val());
+			 var rq = encodeURI($("#rq").val());
+			 var ss = encodeURI($("#ss").val());
+			 var sslx = encodeURI($("#sslx").val());
+			 var ly = encodeURI($("#ly").val());
+			 
+			 $('.diqu a').removeClass('on')
+	         $(this).addClass('on')
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+ 			 $("#lie").html(htmlobj.responseText);
+			 
+			laypage.render({
+			elem: 'fenye'
+			,limit:15
+			//,limits:[15, 20, 25, 50]
+			,layout: ['prev', 'page', 'next']
+			,jump: function(obj, first) {
+			//得到了当前页，用于向服务端请求对应数据
+			var curr = obj.curr;
+			var limit = obj.limit;
+	
+	 if(!first){
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+curr+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+     }
+	,count: $(" #zs ").val()//总页数
+	,first: false//屏蔽首页尾页
+    ,last: false
+    });
+	});
+	
+	
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	$('.rq a').on('click', function (event) {$('#rq').val($(this).text());
+			 var fid = encodeURI($("#fid").val());
+			 var dq = encodeURI($("#dq").val());
+			 var rq = encodeURI($("#rq").val());
+			 var ss = encodeURI($("#ss").val());
+			 var sslx = encodeURI($("#sslx").val());
+			 var ly = encodeURI($("#ly").val());
+			 
+			 $('.rq a').removeClass('on')
+	         $(this).addClass('on')
+			 
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+			  $("#lie").html(htmlobj.responseText);
+
+	
+	laypage.render({
+     elem: 'fenye'
+	 ,limit:15
+	 //,limits:[15, 20, 25, 50]
+	 ,layout: ['prev', 'page', 'next']
+	 ,jump: function(obj, first) {
+    //得到了当前页，用于向服务端请求对应数据
+		var curr = obj.curr;
+		var limit = obj.limit;
+	
+       //layer.msg('第 '+ obj.curr +' 页');
+       // window.location.href='json/zbgg.php?id=87&page='+curr; //物理跳转
+	 if(!first){
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+curr+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+     }
+	,count: $(" #zs ").val()//总页数
+	,first: false//屏蔽首页尾页
+    ,last: false
+  });	
+	});
+
+ /////////////////////////////////////////////////
+ $('#s1').on('click', function (event) {$('#rq').val($(this).text());
+			 var fid = encodeURI($("#fid").val());
+			 var dq = encodeURI($("#dq").val());
+			 var rq = encodeURI($("#rq").val());
+			 var ss = encodeURI($("#ss").val());
+			 var sslx = encodeURI($("#sslx").val());
+		     var ly = encodeURI($("#ly").val());
+			 
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+ 			 $("#lie").html(htmlobj.responseText);
+	
+ laypage.render({
+     elem: 'fenye'
+	 ,limit:15
+	 //,limits:[15, 20, 25, 50]
+	 ,layout: ['prev', 'page', 'next']
+	 ,jump: function(obj, first) {
+	    var curr = obj.curr;
+		var limit = obj.limit;
+	 if(!first){
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+curr+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+    },count: $(" #zs ").val()//总页数
+	,first: false//屏蔽首页尾页
+    ,last: false
+  });	
+	});			 
+/////////////////////////////////////////////	
+
+$('.ly a').on('click', function (event) {$('#ly').val($(this).text());
+			 var fid = encodeURI($("#fid").val());
+			 var dq = encodeURI($("#dq").val());
+			 var rq = encodeURI($("#rq").val());
+			 var ss = encodeURI($("#ss").val());
+			 var sslx = encodeURI($("#sslx").val());
+		     var ly = encodeURI($("#ly").val());
+			 $('.ly a').removeClass('on')
+			 $(this).addClass('on')
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+ 			 $("#lie").html(htmlobj.responseText);
+	
+ laypage.render({
+     elem: 'fenye'
+	 ,limit:15
+	// ,limits:[15, 20, 25, 50]
+	 ,layout: ['prev', 'page', 'next']
+	 ,jump: function(obj, first) {
+		var curr = obj.curr;
+		var limit = obj.limit;
+	 if(!first){
+ htmlobj=$.ajax({url:"json/lie.php?sslx="+sslx+"&id="+fid+"&lx=q&limit=15&page="+curr+"&dq="+dq+"&rq="+rq+"&ss="+ss+"&ly="+ly+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+    }
+	,count: $(" #zs ").val()//总页数
+	,first: false//屏蔽首页尾页
+    ,last: false
+  });	
+  });	     
+});
+</script>
+<script>
+//判定登录
+  var zh= '<?php echo $_SESSION['uzh']; ?>'
+  var oid='<?php echo $_SESSION['oid']; ?>'
+  if(zh.length > 2 || oid.length >2){
+    $("#vip").html("<a href='/user/'>会员中心</a><a href='/user/dl.php?t=1'>退出登录</a>");
+  }
+</script> 
+<?php echo $yj; ?>
+</body>
+</html>

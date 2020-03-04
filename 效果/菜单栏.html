@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				margin: 100px;
+			}
+
+			.maintip {
+				position: relative;
+				z-index: 1;
+				border: 1px solid #E5D1A1;
+				text-align: center;
+				width: 200px;
+				background: #FFFDD2;
+				height: 35px;
+				line-height: 30px;
+			}
+
+			.tips {
+				position: absolute;
+				z-index: 2;
+				width: 800px;
+				min-height: 100px;
+				border: 1px solid #E5D1A1;
+				background: #fff;
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="maintip"><a href="#">服装类</a></div>
+		<div class="tips">
+			<p>
+				<a href="http://www.baidu.com">各种衣服啊</a>
+			</p> <br /><br /><br /><br /><br /><br /><br /><br /><br />
+			<p>
+				<a href="http://www.baidu.com">来百度一下找衣服啊</a>
+			</p>
+		</div>
+
+		<div class="maintip">家电数码</div>
+		<div class="tips">
+			<p>
+				M8卖那么贵，HTC请你继续flop好么
+			</p>
+		</div>
+
+		<div class="maintip">美食</div>
+		<div class="tips">
+			<p>
+				葡萄酒，白酒，啤酒 <br /><br /><br /><br /><br /><br /><br /><br /><br />
+				我特么只是想把这个框拉长
+			</p>
+		</div>
+
+		<div class="maintip">玩具</div>
+		<div class="tips">
+			<p>
+				<a href="http://www.123.com">智力魔方啊神马的你要的都有哦</a>
+			</p>
+		</div>
+	</body>
+	<script src="js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript">
+		$(function() {
+
+			$(".maintip").each(function(index) { //遍历A部分，注意这里绑定事件用了index参数
+				$(this).mouseover(function() { //鼠标经过A时触发事件
+						var obj = $(this).offset(); //获取被鼠标经过的A的偏移位置，offset()是个好东西，不懂的朋友得去了解下
+						var xobj = obj.left + 200 + "px"; //后面要让B水平偏移的距离，这里的“200”是可自定义的，当然你可以改为$(this).width()来获得跟A一样的宽度
+						var yobj = obj.top + "px"; //后面要让B垂直偏移的距离
+						$(this).css({
+							"width": "200px",
+							"z-index": "9999",
+							"border-right": "none",
+							"background": "#fff"
+						}); //A改变样式，变为选中状态的效果
+						$(".tips:eq(" + index + ")").css({
+							"left": xobj,
+							"top": yobj
+						}).show(); //对应的（这里利用了索引）B改变样式并显示出来
+					})
+					.mouseout(function() { //鼠标离开A时触发的事件
+						$(".tips").hide(); //B隐藏
+						$(this).css({
+							"width": "200px",
+							"z-index": "1",
+							"border": "1px solid #E5D1A1",
+							"background": "#FFFDD2"
+						}) //A变回原始样式
+					})
+			})
+
+			$(".tips").each(function() { //遍历B
+				$(this).mouseover(function() { //鼠标经过B时触发事件
+						$(this).prev(".maintip").css({
+							"width": "200px",
+							"z-index": "9999",
+							"border-right": "none",
+							"background": "#fff"
+						}) //对应的A变为选中状态效果
+						$(this).show(); //A不要隐藏了，解决因为上面写的鼠标离开A导致A隐藏
+					})
+					.mouseout(function() { //鼠标离开B触发事件，其实就是让B隐藏，同时A变为原始状态
+						$(this).hide();
+						$(this).prev(".maintip").css({
+							"width": "200px",
+							"z-index": "1",
+							"border": "1px solid #E5D1A1",
+							"background": "#FFFDD2"
+						});
+					})
+			})
+		})
+	</script>
+	<!-- <script type="text/javascript">
+		$(function() {
+
+			$(".maintip").each(function(index) {
+				var tip_height = $(".tips:eq(" + index + ")").height();
+				$(this).mouseover(function() {
+					var win_height = $(window).height(); //获取浏览器当前可视区域高度
+					var obj = $(this).offset();
+					var wobj = $(this).width();
+					if (obj.top + tip_height < win_height) { //判断B底部是否超过浏览器底部
+						//没超过，按默认A和B顶端偏移位置一致即可
+						var xobj = obj.left + wobj + "px";
+						var yobj = obj.top + "px";
+					} else {
+						//超过了，那么抬高B顶部位置
+						var tip_top = win_height - tip_height;
+						var xobj = obj.left + wobj + "px";
+						var yobj = tip_top + "px";
+					}
+					$(this).css({
+						"width": "200px",
+						"z-index": "9999",
+						"border-right": "none",
+						"background": "#fff"
+					});
+					$(".tips:eq(" + index + ")").css({
+						"left": xobj,
+						"top": yobj
+					}).show();
+				}).mouseout(function() {
+					$(".tips").hide();
+					$(this).css({
+						"width": "200px",
+						"z-index": "1",
+						"border": "1px solid #E5D1A1",
+						"background": "#FFFDD2"
+					})
+				})
+
+			})
+
+			$(".tips").each(function() {
+				$(this).mouseover(function() {
+					$(this).prev(".maintip").css({
+						"width": "200px",
+						"z-index": "9999",
+						"border-right": "none",
+						"background": "#fff"
+					})
+					$(this).show();
+				}).mouseout(function() {
+					$(this).hide();
+					$(this).prev(".maintip").css({
+						"width": "200px",
+						"z-index": "1",
+						"border": "1px solid #E5D1A1",
+						"background": "#FFFDD2"
+					});
+				})
+
+			})
+		})
+	</script> -->
+</html>

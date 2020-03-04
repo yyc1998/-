@@ -1,0 +1,209 @@
+<?php include("config/pcuser.php"); ?>
+<?php include("config/mk.php"); ?>
+<?php 
+//读取数据表
+
+$id=$_GET['id'];
+$gjc=$_GET['gjc'];
+
+
+$result = mysqli_query($conn,"SELECT ID,fid,bt,nr,w1,w2,r1,r2 FROM wy WHERE ID=$id ");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+
+$fid=$row["fid"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=$row["r1"];
+$r2=$row["r2"];
+
+}	
+} 
+
+/*分页*/
+$result = mysqli_query($conn,"SELECT ID,fid,bt,nr,w1,w2,r1,r2 FROM wy WHERE fid=$fid and ID<$id ORDER BY r1 desc limit 1");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+
+$sy='<a href="zbxq.php?id='.$row["ID"].'">上一页：'.$row["bt"].'</a>';
+}}
+$result = mysqli_query($conn,"SELECT ID,fid,bt,nr,w1,w2,r1,r2 FROM wy WHERE fid=$fid and ID>$id ORDER BY r1 asc limit 1");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$xy='<a href="zbxq.php?id='.$row["ID"].'">下一页：'.$row["bt"].'</a>';
+}}  
+if($sy==""){$sy="";}
+if($xy==""){$xy="";}
+
+$fy=$sy.' '.$xy;
+
+//内容过滤
+
+$nr= htmlspecialchars_decode($nr); 
+$nr = strip_tags($nr,'<h1><h2><h3><p><br><a><table><tr><td><img><div><ul><li>');
+//$nr = preg_replace( "@style(.*?)\"@is","", $nr );
+//$nr = preg_replace( "@rel(.*?)\"@is","", $nr );
+$nr = preg_replace( "@<script(.*?)</script>@is", "", $nr ); 
+//$nr = preg_replace( "@<iframe(.*?)</iframe>@is", "", $nr ); 
+$nr = str_replace($bt,'',$nr);
+//$nr = preg_replace( "@<(.*?)>@is", "", $nr ); 
+
+$nr = str_replace('&nbsp;','',$nr);
+$nr = str_replace('iframe','',$nr);
+
+ if ($gjz<>""){
+		$jq = explode(',',$gjz); 
+        for($j=0;$j<count($jq);$j++){ 
+        $nr = str_replace($jq[$j],'<font color="#FF0000">'.$jq[$j].'</font>',$nr);  
+        } 
+ }
+ 
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 10");
+if ($result->num_rows > 0) {
+while($row1 = $result->fetch_assoc()) {
+
+$lid=$row1["ID"];
+$lbt=$row1["bt"];
+$lr1=date("m-d",strtotime($row1["r1"]));
+
+$tj=$tj.'<li><a href="zbxq.php?id='.$lid.'" title="'.$lbt.'">'.$lbt.'<s>'.$lr1.'</s></a></li>';
+}	
+} 
+
+/*父参数*/
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,t1,nr FROM fl WHERE ID=$fid ");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$fbt=$row["bt"];
+$fgjz=$row["w1"];
+$fms=$row["w2"];
+$bjt=$row["t1"];
+$fnr=$row["nr"];
+}	
+} 
+
+mysqli_close($conn);
+?>
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" Content="text/html; Charset=UTF-8"/>
+<title><?php echo $bt ?></title>
+<meta name="keywords" content="<?php echo $w1 ?>">
+<meta name="description" content="<?php echo $w2 ?>">
+<meta name="viewport" content="width=device-width, initial-scale=0.36">
+<script src="a/js/jquery.js" charset="utf-8"></script>
+<script src="a/js/layui/layui.js" charset="utf-8"></script>
+<link href="a/js/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+<link href="css/bug.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+.nr .nrzuo a{
+	color: #0C6;
+}
+
+</style>
+
+<?php echo $fnr; ?>
+
+</head>
+
+<body>
+<?php echo $ym; ?>
+
+<div class="tbj" style="background-image:url(<?php echo $bjt; ?>);">
+<!--头部背景-->
+</div>
+
+    <div class="tab">
+    <div class="nr">
+       <a href="/" class="you"><img src="up/images/ico/logo1.png" ></a>
+       <p><a href="/">首页</a> - <a href="lb.php?fid=<?php echo $fid ?>"><?php echo $fbt ?></a></p>
+     </div>
+    </div>
+    
+<div class="nr">
+<div class="nryou lb1">
+  
+<?php echo $gg_a2; ?>
+  
+  <br>
+  <img src="up/images/ico/rwm.png" >
+  
+  </div>
+<div class="nrzuo">
+<h1><?php echo $bt ?></h1>
+<h5><?php echo $r2 ?></h5>
+
+<?php 
+if(strpos($nr,'.swf') !== false){
+echo '<div class="sj"><p>此页面包含flash文件，请用电脑查看</p><p>请用电脑打开下面网址查看：</p><p>http://www.ddswfw.com/zbxq.php?id='.$id.'</p></div>';
+?>
+<div class="pc">
+<script src="js/flexpaper.js" charset="utf-8"></script>
+<a id="viewerPlaceHolder" style="width: 100%; height: 660px; display: block"></a>
+				<script type="text/javascript">
+					var fp = new FlexPaperViewer(
+						'//ec3.powerchina.cn/FlexPaperViewer',
+						'viewerPlaceHolder', {
+							config : {
+								SwfFile : escape('<?php echo $nr; ?>'),
+								EncodeURI : true,
+								Scale : 0.6,
+								ZoomTransition : 'easeOut',
+								ZoomTime : 0.5,
+								ZoomInterval : 0.2,
+								FitPageOnLoad : true,
+								FitWidthOnLoad : true,
+								PrintEnabled: false,//是否支持打印
+								FullScreenAsMaxWindow : false,
+								ProgressiveLoading : true,
+								MinZoomSize : 0.2,
+								MaxZoomSize : 5,
+								SearchMatchAll : false,
+								InitViewMode : 'Portrait',
+								ViewModeToolsVisible : true,
+								ZoomToolsVisible : true,
+								NavToolsVisible : true,
+								CursorToolsVisible : true,
+								SearchToolsVisible : true,
+								localeChain : 'zh_CN'
+							}
+						});
+</script>	
+</div>
+
+<?php } ?>
+
+
+<?php echo $nr; ?>
+<br/>
+<br/>
+<!--<div class="fy"> 
+<?php echo $fy; ?>
+</div>-->
+
+</div>
+
+</div>
+
+<div class="yqlj"><div class="nr">
+    <ul><a href="#">友情链接:</a><?php echo $yqlj ?></ul>
+</div></div>
+<script>
+//判定登录
+  var zh= '<?php echo $_SESSION['uzh']; ?>'
+  var oid='<?php echo $_SESSION['oid']; ?>'
+  if(zh.length > 2 || oid.length >2){
+    $("#vip").html("<a href='/user/'>会员中心</a><a href='/user/dl.php?t=1'>退出登录</a>");
+  }
+</script> 
+<?php echo  $yj; ?>
+
+
+</body>
+</html>
+
+

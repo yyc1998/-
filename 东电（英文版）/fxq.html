@@ -1,0 +1,92 @@
+<?php include("config/db.php"); ?>
+<?php include("config/mk.php"); ?>
+<?php 
+//读取数据表
+
+$id=$_GET['id'];
+
+$result = mysqli_query($conn,"SELECT ID,fid,bt,nr,w1,w2,r1,r2 FROM wy WHERE ID=$id ");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+
+$fid=$row["fid"];
+$bt=$row["bt"];
+$nr=$row["nr"];
+$w1=$row["w1"];
+$w2=$row["w2"];
+$r1=$row["r1"];
+$r2=$row["r2"];
+
+}	
+}
+
+ 
+/*推荐列表*/
+
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,r1,r2 FROM wy WHERE fid=$fid ORDER BY r1 desc limit 10");
+if ($result->num_rows > 0) {
+while($row1 = $result->fetch_assoc()) {
+
+$lbt=$row1["bt"];
+$lr1=date("m-d",strtotime($row["r1"]));
+$tj=$tj.'<li><a href="#">'.$lbt.'<s>'.$lr1.'</s></a></li>';
+}	
+}  
+/*父参数*/
+$result = mysqli_query($conn,"SELECT ID,fid,bt,w1,w2,t1 FROM fl WHERE ID=$fid ");
+if ($result->num_rows > 0) {
+while($row = $result->fetch_assoc()) {
+$fbt=$row["bt"];
+$fgjz=$row["w1"];
+$fms=$row["w2"];
+$bjt=$row["t1"];
+}	
+} 
+
+
+mysqli_close($conn);
+?>
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-type" Content="text/html; Charset=UTF-8"/>
+<title><?php echo $bt ?></title>
+<meta name="keywords" content="<?php echo $w1 ?>">
+<meta name="description" content="<?php echo $w2 ?>">
+<script src="a/js/jquery.js" charset="utf-8"></script>
+<script src="a/js/layui/layui.js" charset="utf-8"></script>
+<meta name="viewport" content="width=device-width, initial-scale=0.36">
+<link href="a/js/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<?php echo  $ym; ?>
+<div class="tbj" style="background-image:url(<?php echo $bjt; ?>);">
+<!--头部背景-->
+</div>
+
+    <div class="tab">
+    <div class="nr"><img src="up/images/ico/logo1.png" >
+    <p><a href="/">首页</a> - <a href="lb.php?fid=<?php echo $fid ?>"><?php echo $fbt ?></a></p>
+     </div>
+    </div>
+    
+<div class="nr">
+
+<?php echo $nr; ?>
+
+</div>
+<script>
+//判定登录
+  var zh= '<?php echo $_SESSION['uzh']; ?>'
+  var oid='<?php echo $_SESSION['oid']; ?>'
+  if(zh.length > 2 || oid.length >2){
+    $("#vip").html("<a href='/user/'>会员中心</a><a href='/user/dl.php?t=1'>退出登录</a>");
+  }
+</script> 
+<?php echo  $yj; ?>
+</body>
+</html>
+
+

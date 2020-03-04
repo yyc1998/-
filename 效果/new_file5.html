@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			/* 伪元素before-after */
+			#before-after ul {
+				clear: both;
+				overflow: hidden;
+				margin: 20px 0 0 0
+			}
+
+			#before-after li {
+				list-style: none;
+				float: left;
+				margin: 0 20px 0 0
+			}
+
+			#before-after li a {
+				height: 365px;
+			}
+
+			#before-after li a,
+			#before-after li img {
+				display: block;
+				height: 220px;
+				overflow: hidden;
+				position: relative;
+				transition: all 0.3s ease 0s;
+				width: 390px;
+			}
+
+			#before-after li a:before,
+			#before-after li a:after {
+				content: "";
+				height: 220px;
+				left: 0;
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				transition: opacity 0.4s ease 0s;
+				visibility: hidden;
+				width: 390px;
+			}
+
+			#before-after li a:before {
+				background: #7a7fd2;
+				z-index: 1
+			}
+
+			#before-after li a:hover:before {
+				opacity: 0.8;
+				visibility: visible;
+			}
+
+			#before-after li:hover a:after {
+				z-index: 2;
+				background: url(images/a.png) center center no-repeat;
+			}
+
+			#before-after li a:hover:after {
+				opacity: 1;
+				visibility: visible;
+			}
+
+			#before-after li:hover img {
+				transform: scale(1.1)
+			}
+		</style>
+	</head>
+	<body id="before-after">
+		<ul>
+			<li><a href="#"><img src="images/a.png" width="390" alt=""></a></li>
+			<li><a href="#"><img src="images/b.jpeg" alt=""></a></li>
+			<li><a href="#"><img src="images/c.png" alt=""></a></li>
+		</ul>
+	</body>
+</html>

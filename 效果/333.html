@@ -1,0 +1,43 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<script src="js/jquery-1.11.3.min.js">
+			/*导入jquery文件*/
+		</script>
+		<script type="text/javascript">
+			$(function() {
+				//一定要写外面这句话，表示的是页面加载成功
+				//显示/隐藏
+				$("#b1").click(function() {
+					$("#b1_div").toggle(500);
+				});
+				//滑入/划出
+				$("#b2").click(function() {
+					$("#b2_div").slideToggle(500);
+				});
+				//淡入淡出
+				$("#b3").click(function() {
+					$("#b3_div").fadeToggle(500);
+				});
+			});
+		</script>
+	</head>
+
+	<style>
+		div{
+              /*  border:1px solid #000;
+                width:150px;
+                height:150px; */
+            }
+        </style>
+
+	<body>
+		<input type="button" id="b1" value="显示/隐藏">
+		 <br>
+		<div id="b1_div"><img src="img/photo-1.jpg" /></div>
+		<input type="button" id="b2" value="滑入/划出">
+		<div id="b2_div"><img src="img/photo-5.jpg" /></div> <br>
+		<input type="button" id="b3" value="淡入/淡出">
+		<div id="b3_div"><img src="img/photo-4.jpg" /></div>
+	</body>
+</html>

@@ -1,0 +1,216 @@
+<?php include("config/db.php"); ?>
+<?php include("config/mk.php"); ?>
+<?php 
+//读取数据表
+$ss=$_GET['ss'];
+?>
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>站内搜索</title>
+<meta name="viewport" content="width=device-width, initial-scale=0.36">
+<script src="a/js/jquery.js" charset="utf-8"></script>
+<script src="a/js/layui/layui.js" charset="utf-8"></script>
+<link href="a/js/layui/css/layui.css" rel="stylesheet" type="text/css">
+<link href="css/css.css" rel="stylesheet" type="text/css">
+
+<style type="text/css">
+.lie li a s{ float: right; }
+</style>
+</head>
+
+<body>
+<?php echo  $ym ?>
+
+
+    <div class="tab">
+    <div class="nr"><img src="up/images/ico/logo1.png" >
+    <p><a href="/">首页</a> - <a href="ss.php">搜索结果</a></p>
+     </div>
+    </div>
+
+<div class="nr">
+  
+
+    <h2>搜索结果 <font color="#FF0000"><?php echo $ss ?></font></h2>
+    <ul id="lie" class="lie"></ul>
+      <div id="fenye"></div>
+
+</div>
+
+
+<div class="yqlj"><div class="nr">
+    <ul><a href="#">友情链接:</a><?php echo $yqlj ?></ul>
+</div></div>
+
+<script>
+
+			 		
+ $.extend({
+  getUrlVars: function(){
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    { hash = hashes[i].split('=');vars.push(hash[0]);vars[hash[0]] = hash[1];}
+    return vars; },
+  getUrlVar: function(name){return $.getUrlVars()[name];}
+});
+var allVars = $.getUrlVars();
+var ss = $.getUrlVar('ss');
+
+var murl='json/ss.php?ss='+ss //列表地址
+    $("#l1").addClass("on");
+
+ //初始化ajax信息
+ var dq = $("#dq").val();
+ var rq = $("#rq").val();
+
+ htmlobj=$.ajax({url:murl+"&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"",async:false});
+ 
+
+ $("#lie").html(htmlobj.responseText);
+
+		
+layui.use(['laypage', 'layer'], function(){
+  var laypage = layui.laypage
+  ,layer = layui.layer;
+  
+  //自定义排版
+  laypage.render({
+    elem: 'fenye'
+    
+    ,layout: ['limit', 'prev', 'page', 'next']
+	//,curr: location.hash.replace('#!fenye=', '') //获取起始页
+	//,groups:3//同时显示页数
+	,theme: '#39F'
+	,limit:15
+	,limits:[15, 20, 25, 50]
+	,jump: function(obj, first) {
+    //得到了当前页，用于向服务端请求对应数据
+		var curr = obj.curr;
+		var limit = obj.limit;
+	
+       //layer.msg('第 '+ obj.curr +' 页');
+       // window.location.href='json/zbgg.php?id=87&page='+curr; //物理跳转
+	 if(!first){
+	  htmlobj=$.ajax({url:murl+"&limit="+limit+"&page="+curr+"&dq="+dq+"&rq="+rq+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+	 $('#gb').on('click', function (event) {
+	$("#shai").hide();
+	$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+ });
+ 
+ $('#sx').on('click', function (event) {
+	$("#shai").show();
+	$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+ });
+ 
+$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+    }
+	,count: $(" #zs ").val()//总页数
+	
+  });
+  
+  
+  	
+    $('.diqu a').on('click', function (event) {
+			 
+			 $('#dq').val($(this).text());
+			 
+			 var dq = $("#dq").val();
+			 var rq = $("#rq").val();
+			 
+			 $('.diqu a').removeClass('on')
+	         $(this).addClass('on')
+			 htmlobj=$.ajax({url:murl+"&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"",async:false});
+ 			 $("#lie").html(htmlobj.responseText);
+			 
+	laypage.render({
+    elem: 'fenye'
+	,limit:15
+	,limits:[15, 20, 25, 50]
+	,layout: ['limit', 'prev', 'page', 'next']
+	,jump: function(obj, first) {
+    //得到了当前页，用于向服务端请求对应数据
+		var curr = obj.curr;
+		var limit = obj.limit;
+	
+       //layer.msg('第 '+ obj.curr +' 页');
+       // window.location.href='json/zbgg.php?id=87&page='+curr; //物理跳转
+	 if(!first){
+	  htmlobj=$.ajax({url:murl+"&limit="+limit+"&page="+curr+"&dq="+dq+"&rq="+rq+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+	 
+    }
+	,count: $(" #zs ").val()//总页数
+  });
+	$('#gb').on('click', function (event) {
+	$("#shai").hide();
+	$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+ });
+ 
+ $('#sx').on('click', function (event) {
+	$("#shai").show();
+	$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+ });
+ 
+$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+			 
+	});
+	
+	$('.rq a').on('click', function (event) {
+		     $('#rq').val($(this).text());
+			 var dq = $("#dq").val();
+			 var rq = $("#rq").val();
+			 
+			 $('.rq a').removeClass('on')
+	         $(this).addClass('on')
+			 
+			 htmlobj=$.ajax({url:murl+"&limit=15&page="+1+"&dq="+dq+"&rq="+rq+"",async:false});
+ 			 $("#lie").html(htmlobj.responseText);
+	
+	laypage.render({
+     elem: 'fenye'
+	 ,limit:15
+	 ,limits:[15, 20, 25, 50]
+	 ,layout: ['limit', 'prev', 'page', 'next']
+	 ,jump: function(obj, first) {
+    //得到了当前页，用于向服务端请求对应数据
+		var curr = obj.curr;
+		var limit = obj.limit;
+	
+       //layer.msg('第 '+ obj.curr +' 页');
+       // window.location.href='json/zbgg.php?id=87&page='+curr; //物理跳转
+	 if(!first){
+	  htmlobj=$.ajax({url:murl+"&limit="+limit+"&page="+curr+"&dq="+dq+"&rq="+rq+"",async:false});
+	  $("#lie").html(htmlobj.responseText);
+	 }
+	 $('#gb').on('click', function (event) {
+	$("#shai").hide();
+	$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+ });
+ 
+ $('#sx').on('click', function (event) {
+	$("#shai").show();
+	$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+ });
+ 
+$("#lx").text($("#dq").val()+'-'+$("#rq").val());
+    }
+	,count: $(" #zs ").val()//总页数
+  });	
+			 
+	});
+	
+  
+});
+      
+
+
+</script>
+<?php echo  $yj; ?>
+</body>
+</html>

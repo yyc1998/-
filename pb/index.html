@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+		<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+		<title>拨号</title>
+		<style type="text/css">
+			/* css 重置 */
+			body,
+			p,
+			input,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			ul,
+			li,
+			dl,
+			dt,
+			dd,
+			form {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+				vertical-align: middle;
+				font-weight: normal;
+			}
+
+			img {
+				border: 0;
+				margin: 0;
+				padding: 0;
+			}
+
+			body {
+				color: #000;
+				-webkit-user-select: none;
+				-webkit-text-size-adjust: none;
+				font: normal 16px/200% "微软雅黑", helvetica, arial;
+				text-align: left;
+			}
+
+			header,
+			section,
+			footer {
+				display: block;
+				margin: 0;
+				padding: 0
+			}
+
+			a {
+				text-decoration: none;
+				color: #919191;
+			}
+
+			a:active {
+				-webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+				-webkit-user-select: none;
+				-moz-user-focus: none;
+				-moz-user-select: none;
+			}
+
+			/* .main {
+				padding: 10px 0;
+			} */
+
+			.title {
+				height: 35px;
+				width: 100%;
+				background-color: #ffffff;
+				position: fixed;
+				z-index: 999;
+				padding-top: 10px;
+			}
+
+			.lb {
+				position: relative;
+				top: 40px;
+			}
+
+			.bt {
+				width: 80%;
+				margin-left: 10%;
+				height: 100%;
+				clear: both;
+			}
+
+			.title .bt li {
+				text-align: center;
+				float: left;
+				width: 33%;
+			}
+
+			.title .bt a {
+				padding-bottom: 5px;
+				font-weight: bold;
+			}
+
+			.on a {
+				color: #6C7DCF;
+				border-bottom: 2px solid #6C7DCF;
+			}
+
+			.list {
+				width: 90%;
+				margin-left: 5%;
+				position: relative;
+				padding-top: 10px;
+			}
+
+			.lb .list li {
+				height: 80px;
+				border-bottom: 1px solid #E8E8E8;
+				position: relative;
+			}
+
+			.list span {
+				height: 100%;
+			}
+
+			.left {
+				float: left;
+			}
+
+			.left ul {
+				margin-top: 10px;
+				width: 232px;
+				overflow: hidden;
+			}
+
+			.list .left li {
+				height: 30px;
+				line-height: 30px;
+				border: 0;
+				font-size: 16px;
+			}
+
+			.tel {
+				color: #D4434E;
+				font-weight: 400;
+				font-size: 18px !important;
+			}
+
+			.right {
+				float: right;
+			}
+
+			.right ul {
+				margin-top: 10px;
+			}
+
+			.list .right li {
+				float: left;
+				height: 60px;
+				line-height: 60px;
+				border: 0;
+				margin-left: 15px;
+				font-size: 14px;
+			}
+
+			.sc img {
+				vertical-align: middle;
+			}
+
+			.myimage {
+				position: absolute;
+				right: 0;
+				top: 26px;
+			}
+
+			.sc {
+				width: 25px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="main">
+			<div class="title">
+				<ul class="bt">
+					<li class="on"><a href="#">未拨号码</a></li>
+					<li><a href="#">已拨号码</a></li>
+					<li><a href="#">标记号码</a></li>
+				</ul>
+			</div>
+			<div class="lb">
+				<ul class="list">
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">135969259831359692598313596925983</li>
+									<li class="gs">东电云平台东电云平台东电云平台东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+					<li>
+						<a href="tel:13596925983">
+							<span class="left">
+								<ul>
+									<li class="tel">13596925983</li>
+									<li class="gs">东电云平台</li>
+								</ul>
+							</span>
+							<span class="right">
+								<ul>
+									<li class="tm">15：10</li>
+									<li class="sc">
+										<!-- <img src="img/1.png"> -->
+									</li>
+								</ul>
+							</span>
+						</a>
+						<a href="#" class="myimage"><img src="img/1.png"></a>
+					</li>
+				</ul>
+			</div>
+
+		</div>
+		<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js"></script>
+		<script type="text/javascript">
+			var i = 0;
+
+			function changeImage() {
+				element = document.getElementsByName('myimage');
+				if (i == 0) {
+					i = 1;
+					element.src = "img/2.png";
+				} else {
+					i = 0;
+					element.src = "img/1.png";
+				}
+			}
+		</script>
+
+	</body>
+</html>

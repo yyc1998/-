@@ -1,0 +1,56 @@
+//<?php
+//echo strtotime(date('Y-m-d'));
+//
+////获取今天凌晨的时间戳
+echo strtotime(date('Y-m-d',time()));
+////
+////获取明天凌晨的时间戳
+//echo strtotime(date('Y-m-d',strtotime('+1 day')));
+//
+////附上测试代码：
+//echo strtotime('2012-11-2');
+//echo strtotime('2012-11-2 00:00:00');
+//echo strtotime(date('Y-m-d')),'
+//';
+//echo date('Y-m-d H:i:s',strtotime(date('Y-m-d')));
+//echo strtotime(date('Y-m-d',strtotime('+1 day')));
+//echo ( strtotime(date('Y-m-d',strtotime('+1 day'))) - strtotime(date('Y-m-d')) )/3600;
+//
+////其它参考代码：
+//
+echo "<br>一周后:".date("Y-m-d",strtotime("+1 week"));
+echo "<br>一周零两天四小时两秒后:".date("Y-m-d G:H:s",strtotime("+1 week 2 days 4 hours 2 seconds"));
+echo "<br>下个星期四:".date("Y-m-d",strtotime("next Thursday"));
+echo "<br>上个周一:".date("Y-m-d",strtotime("last Monday"));
+echo "<br>一个月前:".date("Y-m-d",strtotime("last month"));
+echo "<br>一个月后:".date("Y-m-d",strtotime("+1 month"));
+echo "<br>十年后:".date("Y-m-d",strtotime("+10 year"));
+//
+
+//
+//echo "今天:".date("Y-m-d")."<br>";
+echo "<br>昨天:".date("Y-m-d",strtotime("-1 day")), "<br>";
+echo "<br>明天:".date("Y-m-d",strtotime("+1 day")). "<br>";
+echo "<br>一周后:".date("Y-m-d",strtotime("+1 week")). "<br>";
+echo "<br>一周零两天四小时两秒后:".date("Y-m-d G:H:s",strtotime("+1 week 2 days 4 hours 2 seconds")). "<br>";
+echo "<br>下个星期四:".date("Y-m-d",strtotime("next Thursday")). "<br>";
+echo "<br>上个周一:".date("Y-m-d",strtotime("last Monday"))."<br>";
+echo "<br>一个月前:".date("Y-m-d",strtotime("last month"))."<br>";
+echo "<br>一个月后:".date("Y-m-d",strtotime("+1 month"))."<br>";
+echo "<br>十年后:".date("Y-m-d",strtotime("+10 year"))."<br>";
+//
+//
+//
+//  //php获取今日开始时间戳和结束时间戳
+//  $beginToday=mktime(0,0,0,date('m'),date('d'),date('Y'));
+//  $endToday=mktime(0,0,0,date('m'),date('d')+1,date('Y'))-1;
+//  //php获取昨日起始时间戳和结束时间戳
+//  $beginYesterday=mktime(0,0,0,date('m'),date('d')-1,date('Y'));
+//  $endYesterday=mktime(0,0,0,date('m'),date('d'),date('Y'))-1;
+//  //php获取上周起始时间戳和结束时间戳
+//  $beginLastweek=mktime(0,0,0,date('m'),date('d')-date('w')+1-7,date('Y'));
+//  $endLastweek=mktime(23,59,59,date('m'),date('d')-date('w')+7-7,date('Y'));
+//  //php获取本月起始时间戳和结束时间戳
+//  $beginThismonth=mktime(0,0,0,date('m'),1,date('Y'));
+//  $endThismonth=mktime(23,59,59,date('m'),date('t'),date('Y'));
+//

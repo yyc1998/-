@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<style type="text/css">
+			body {
+				background-color: #000000;
+				width: 80%;
+			}
+
+			/* 自动导航S */
+			.nf_dh {
+				height: 70px;
+				padding-right: 30px;
+				padding-left: 10px;
+				position: relative;
+				z-index: 99999;
+				text-align: right;
+				float: right;
+			}
+
+			/*主导航*/
+			.nf_dh ul {
+				margin: 0px;
+				padding: 0px;
+				list-style-type: none;
+				display: block;
+			}
+
+			.nf_dh ul li {
+				display: inline-block;
+				position: relative;
+				line-height: 70px;
+				height: 70px;
+				*float: left;
+			}
+
+			.nf_dh ul li a {
+				color: #fff;
+				text-decoration: none;
+				display: block;
+				padding-right: 20px;
+				padding-left: 20px;
+				font-weight: 100;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				font-size: 11pt;
+				text-shadow: -1px -1px -1px #FFF;
+				-webkit-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-o-transition: all 0.5s;
+				transition: all 0.5s;
+			}
+
+			.nf_dh a:hover {
+				color: #8215ff;
+				background-image: url(img/dh_bg.png);
+				background-repeat: no-repeat;
+				background-position: top;
+			}
+
+			/*二级导航*/
+			.nf_dh ul li ul {
+				position: absolute;
+				visibility: hidden;
+				background-color: #f2f2f2;
+				display: block;
+				width: 140px;
+				filter: alpha(Opacity=100);
+				-moz-opacity: 0;
+				opacity: 0;
+				padding-top: 10px;
+				padding-bottom: 10px;
+				background-color: #f9f9f9;
+				min-width: 100px;
+				box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+				font-family: "宋体";
+				border-radius: 1px;
+				border-radius: 1px;
+			}
+
+			.nf_dh ul li:hover ul {
+				animation-name: swingdown;
+				animation-duration: 0.5s;
+				animation-timing-function: ease;
+			}
+
+			@keyframes swingdown {
+				0% {
+					opacity: .99999;
+					transform: rotateX(90deg);
+				}
+
+				100% {
+					transform: rotateX(0);
+					animation-timing-function: ease-in-out;
+				}
+			}
+
+			.nf_dh ul li ul:before {
+				content: "";
+				width: 0px;
+				height: 0px;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-bottom: 5px solid #fff;
+				position: absolute;
+				top: -5px;
+				left: 32px;
+			}
+
+			.nf_dh ul li:hover ul {
+				visibility: visible;
+				filter: alpha(Opacity=100);
+				-moz-opacity: 1;
+				opacity: 1;
+			}
+
+			.nf_dh ul li:hover ul li ul {
+				visibility: hidden;
+				filter: alpha(Opacity=100);
+				-moz-opacity: 0;
+				opacity: 0;
+			}
+
+			.nf_dh ul li ul li {
+				display: block;
+				position: relative;
+				line-height: 30px;
+				height: 30px;
+				float: none;
+			}
+
+			.nf_dh ul li ul li a {
+				font-size: 9pt;
+				line-height: 30px;
+				height: 30px;
+				overflow: hidden;
+				font-weight: 200;
+				color: #333;
+				text-align: center;
+				text-shadow: #000 0px 0px 0px;
+				border-top-width: 0px;
+			}
+
+			.nf_dh ul li ul li a:hover {
+				color: #8215ff;
+				background-color: #f2f2f2;
+				background-image: none;
+			}
+
+			/*三级导航*/
+			.nf_dh ul li ul li ul {
+				top: -40px;
+				position: absolute;
+				left: 130px;
+				filter: alpha(Opacity=100);
+				-moz-opacity: 0;
+				opacity: 0;
+				background-color: #f2f2f2;
+			}
+
+			.nf_dh ul li ul li ul li a {
+				font-size: 12px;
+				border-top-width: 0px;
+			}
+
+			.nf_dh ul li ul li ul li a:hover {
+				color: #F60;
+			}
+
+			.nf_dh ul li ul li:hover ul {
+				position: relative;
+				visibility: visible;
+				opacity: 90;
+			}
+
+			/*移动端*/
+			.nf_mdh {
+				display: none;
+				position: relative;
+				z-index: 999999999999;
+			}
+
+			.nf_mdh span {
+				position: absolute;
+				top: 15px;
+				right: 9px;
+			}
+
+			.nf_mdh ul,
+			.nf_mdh li {
+				margin: 0px;
+				padding: 0px;
+				list-style-type: none;
+			}
+
+			.nf_mdh .san a {
+				display: block;
+				width: 22px;
+				border-bottom-width: 2px;
+				border-bottom-style: solid;
+				border-bottom-color: #d1d1d1;
+				margin-top: 12px;
+				margin-right: auto;
+				margin-left: auto;
+				height: 19px;
+				position: absolute;
+				z-index: 9999;
+				top: 0px;
+				right: 5px;
+				text-shadow: -1px -1px -1px #FFF;
+			}
+
+			.nf_mdh .san a s {
+				display: block;
+				border-top-width: 2px;
+				border-top-style: solid;
+				border-top-color: #d1d1d1;
+				border-bottom-width: 2px;
+				border-bottom-style: solid;
+				border-bottom-color: #d1d1d1;
+				height: 7px;
+				margin-bottom: 7px;
+			}
+
+			.nf_mdh .san a:hover {
+				border-color: #0C6;
+			}
+
+			.nf_mdh .san a:hover s {
+				border-color: #0C6;
+			}
+
+			.nf_mdh span .menu {
+				position: absolute;
+				background-color: #f9f9f9;
+				min-width: 100px;
+				box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+				-webkit-transition: all 0.5s;
+				-moz-transition: all 0.5s;
+				-ms-transition: all 0.5s;
+				-o-transition: all 0.5s;
+				transition: all 0.5s;
+				visibility: hidden;
+				left: 240px;
+				width: 200px;
+				list-style-type: none;
+				margin: 0px;
+				padding-right: 40px;
+				padding-top: 10px;
+				padding-bottom: 20px;
+				display: none;
+			}
+
+			.nf_mdh span .menu li a {
+				display: block;
+				line-height: 28px;
+				font-size: 14px;
+				color: #000;
+				text-decoration: none;
+				border-bottom-width: 1px;
+				border-bottom-style: dotted;
+				border-bottom-color: #CCC;
+				font-weight: 700;
+				text-align: left;
+				padding-top: 5px;
+				padding-bottom: 5px;
+				margin-left: 15px;
+			}
+
+			.nf_mdh span .menu li ul li a {
+				color: #333;
+				font-weight: 300;
+				padding-top: 1px;
+				padding-bottom: 1px;
+				background-image: url(/UP/Admin/18x18/tb1.gif);
+				background-repeat: no-repeat;
+				background-position: left center;
+				margin-left: 0px;
+				padding-left: 15px;
+			}
+
+			.nf_mdh span .menu li ul li ul li a {
+				color: #666;
+				font-size: 12px;
+			}
+
+			.nf_mdh span ul li ul {
+				margin-left: 16px;
+			}
+
+			.nf_mdh span:hover .menu {
+				visibility: visible;
+				left: -240px;
+				display: block;
+			}
+
+			.menu div:hover .nf_mdh span .menu {
+				display: none;
+			}
+
+			@media screen and (max-width: 900px) {
+				.nf_dh {
+					display: none;
+				}
+
+				.nf_mdh {
+					display: block;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div class="nf_dh">
+			<ul class="menu">
+				<li><a href="/">首页</a></li>
+				<li><a href="/htm/423/">服务</a>
+					<ul>
+						<li><a href="/htm/430/">网站建设服务</a></li>
+						<li><a href="/htm/432/">互联网应用开发</a></li>
+						<li><a href="/htm/447/">小程序公众号搭建</a></li>
+						<li><a href="/htm/431/">企业大数据服务</a></li>
+						<li><a href="/htm/433/">SEO优化</a></li>
+					</ul>
+				</li>
+				<li><a href="/htm/424/">案例</a>
+					<ul>
+						<li><a href="/htm/434/">网站案例</a></li>
+						<li><a href="/htm/446/">其它案例</a></li>
+					</ul>
+				</li>
+				<li><a href="/htm/426/">方案</a></li>
+				<li><a href="/htm/445/">优势</a></li>
+				<li><a href="/htm/429/">动态</a></li>
+				<li><a href="/htm/421/">关于</a>
+					<ul>
+						<li><a href="/htm/441/">公司简介</a></li>
+						<li><a href="/htm/442/">发展历程</a></li>
+						<li><a href="/htm/443/">版权声明</a></li>
+						<li><a href="/htm/444/">联系方式</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</body>
+</html>
